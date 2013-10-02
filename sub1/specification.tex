@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage[none]{hyphenat}
+\usepackage[a4paper]{geometry}
+\usepackage{enumerate}
+\newgeometry{left=2cm,bottom=2cm,right=2cm}
+
+\title{Functional Specification for Database and Information Systems Project}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+This document describes the functional specifications of the application being developed to meet the requirements of the completion of the Database and Information Systems Lab project. The project details are as below: 
+\begin{itemize}
+\item Name of the Project : \emph{Trawell}
+\item Team Members : Mridul Garg (110050030), Anand Soni (110050037), Sanchit Garg (110050035), Himanshu Roy (110050019) 
+\end{itemize}
+
+\section{Project Domain}
+\begin{itemize}
+\item Tourism. The application will serve as a travel planner and guide for tourists. 
+\end{itemize}
+
+\section{Application Specifications}
+Based on the category of the user, the application is supposed to provide the following functionalities:
+\begin{itemize}
+\item For an unregistered user : An unregistered user is any random visitor who comes across and explores the application.
+\begin{itemize}
+\item Search for tourist places by country, state or city
+\item Search for a tourist place by its name
+\end{itemize}
+\item For a registered user : A registered user is one who has filled in her personal details and has been provided login credentials.
+\begin{itemize}
+\item Search for tourist places by country, state or city
+\item Search for a tourist place by its name
+\item Search for hotels by city or tourist spot
+\item Search for speciality cuisines of the region
+\item Rate places visited and hotels stayed in 
+\item Maintain a wishlist for the places she wants to visit
+\item Prepare and modify a travel plan for her tour
+\item Maintain a history which records all the details of her trip
+\item Update personal information
+\end{itemize}
+\item For Administrators : An administrator is the owner of this application who can create and modify the database and can also add more users to it (employees or customers).
+\begin{itemize}
+\item Modify the tourism database
+\item Create logins for recruited employees
+\end{itemize}
+\item For employees : An employee (not necessarily a user) has the power to modify the database.
+\begin{itemize}
+\item Modify the tourism database
+\end{itemize}
+\end{itemize}
+
+\section{Aspects Modelled}
+As a part of this application, we have created 12 entities and modelled them as below:
+\begin{itemize}
+\item Modelled Customers, Administrator, Employee, Countries, States, Cities, Tourist spots, Hotels and Food.
+\item Modelled travel planner, rating system, tour history, wishlist (places to visit). 
+\end{itemize}
+
+\section{Aspects Not Modelled}
+The following aspects have not been modelled in the application:
+\begin{itemize}
+\item Review system, Festivals, Shopping, Entertainment and other activities.
+\end{itemize}
+
+\section{Role of Each Member}
+This section roughly describes the parts of the project that each member will contribute to. However, the actual contributions may differ.
+\begin{itemize}
+\item Mridul Garg
+\begin{itemize}
+\item Design of the Functional Specification
+\item Design of relational database and screen
+\item Normalization and design of final schema
+\item Writing SQL scripts for schema and other programming tasks.
+\end{itemize}
+\item Anand Soni
+\begin{itemize}
+\item Design of the Functional Specification
+\item E/R modelling and creation of test plan 
+\item Design of relational database and screen
+\item Writing SQL scripts for schema and other programming tasks.
+\end{itemize}
+\item Sanchit Garg
+\begin{itemize}
+\item Design of the Functional Specification
+\item E/R modelling and creation of test plan
+\item Normalization and design of final schema
+\item Writing SQL scripts for schema and other programming tasks.
+\end{itemize}
+\item Himanshu Roy
+\begin{itemize}
+\item Design of the Functional Specification
+\item E/R modelling and creation of test plan
+\item Normalization and design of final schema
+\item Writing SQL scripts for schema and other programming tasks.
+\end{itemize}
+\end{itemize}
+
+\section{Possible Value Addition}
+The following features might prove to be further value additions to this project which we have not planned to model/implement:
+\begin{itemize}
+\item Hotel Bookings
+\item Travel Bookings and planning
+\end{itemize}
+\end{document}

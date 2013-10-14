@@ -188,7 +188,7 @@ Date and time of a new plan, if given before the current time, the user should b
 \end{itemize}
 
 \section{Schema Design, Screen Design, Functional Dependencies and Assertions}
-\subsection*{Schema Design}
+\subsection{Schema Design}
 \subsubsection{Entities}
 
 \begin{itemize}
@@ -252,18 +252,17 @@ Here in our Database there are only many-to-many relationships that are "Friends
 \item Group(GroupID(Reference to Friends.GroupID), Friend(Reference to Customer.ID))
 
 \item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address, HotelRating, SpotRating, HotelName(Referenced to Hotel.Name), SpotName(Referenced to TouristSpot.Name), CityName(Referenced to City.Name), StateName(Referenced to State.Name), CountryName(Referenced to Country.Name))
+\end{itemize}
 
-\subsection*{Assertions}
+\subsection{Assertions}
 \begin{itemize}
 \item STD codes for different states are different in a country.
 \item Pincodes are different for different cities in a country.
 \item In the Schedule/Plan relation a user can update/enter event corresponds to  only after the current timestamp.
 \item Rating of a hotel or a tourist spot should be consistent with the rating data on updation of it’s rating by the user. i.e. the current rating should be updated if a user update or rate a spot or hotel.
-
-\end{itemize}
 \end{itemize}
 
-\subsection*{Functional Dependecies}
+\subsection{Functional Dependecies}
 \begin{itemize}
 \item For Customer Relation
 \begin{itemize}
@@ -314,6 +313,80 @@ Here in our Database there are only many-to-many relationships that are "Friends
 \end{itemize}
 \end{itemize}
 
-\subsection*{Screen Design}
-Screen Design are to be found in "screendesign-2013-10-13.zip" in the folder.
+\subsection{Screen Design}
+%Screen Design are to be found in "screendesign-2013-10-13.zip" in the folder.
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/home.png}\hspace*{\fill}
+\caption{Home Screen}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/login.png}\hspace*{\fill}
+\caption{Login page}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/signup.png}\hspace*{\fill}
+\caption{Registration page}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/afterlogin.png}\hspace*{\fill}
+\caption{Logged In page}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/country.png}\hspace*{\fill}
+\caption{Search by country $\rightarrow$ Results}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/aftercountry.png}\hspace*{\fill}
+\caption{Search by state of the country selected}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/state.png}\hspace*{\fill}
+\caption{States of selected country}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/city.png}\hspace*{\fill}
+\caption{Popular cities of the state selected}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/aftercity.png}\hspace*{\fill}
+\caption{Popular Tourist Spots \& Hotels of the selected city}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/rating.png}\hspace*{\fill}
+\caption{Description of the selected Spot or Hotel}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/profile.png}\hspace*{\fill}
+\caption{User Profile}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/currentplan.png}\hspace*{\fill}
+\caption{Current plans of the User}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/plantravel.png}\hspace*{\fill}
+\caption{Add a new Plan}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/history.png}\hspace*{\fill}
+\caption{History of the travel of the User}
+\end{figure}
+
+\begin{figure}[ht!]
+\hfill\includegraphics[width=170mm]{./screen_design/wishlist.png}\hspace*{\fill}
+\caption{User's Wishlist}
+\end{figure}
 \end{document}

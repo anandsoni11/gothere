@@ -5,7 +5,7 @@
 \usepackage{enumerate}
 \newgeometry{left=2cm,bottom=2cm,right=2cm}
 
-\title{Functional Specification, E-R Model and Test Plan for Database and Information Systems Project}
+\title{Functional Specification, E-R Model, Test Plan, Schema Design and Screen Design for Database and Information Systems Project}
 
 \begin{document}
 \maketitle
@@ -194,13 +194,13 @@ Date and time of a new plan, if given before the current time, the user should b
 \begin{itemize}
 \item Country(Name PRIMARY KEY, Currency, ISD)
 \item State(Country(Reference to Country.Name), Name(Discriminator), Cuisine, STDCode)
-\item City(Country(Reference to Country.Name), State(Reference to State.Name), Name(Discriminator), Pincode UNIQUE)
+\item City(Country(Reference to Country.Name), State , Name(Discriminator), Pincode UNIQUE)
 \item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address)
 \item Schedule(CustomerID (Reference to Customer.Username),Event NOT NULL, TimeStamp(Discriminator) NOT NULL)
 \item History(CustomerID (Reference to Customer.Username), PlanID (DISCRIMINATOR), Date NOT NULL, PlaceID NOT NULL)
-\item HistoryPlaces(PlaceID(Reference to History.PlaceID), CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Reference to TouristSpotName))
+\item HistoryPlaces(PlaceID(Reference to History.PlaceID), CountryName(Reference to Country.Name), StateName , CityName , SpotName(Reference to TouristSpotName))
 \item Plan(ID PRIMARY KEY)
-\item Hotel(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), HotelName(Discriminator), Address NOT NULL, PhoneNo., NumberOfHits, Rating)
+\item Hotel(CountryName(Reference to Country.Name), StateName , CityName , HotelName(Discriminator), Address NOT NULL, PhoneNo., NumberOfHits, Rating)
 \end{itemize}
 
 \subsubsection{IS-A Relationships}
@@ -224,21 +224,21 @@ Date and time of a new plan, if given before the current time, the user should b
 \begin{itemize}
 \item E/R Approach
 \begin{itemize}
-\item TouristSpot(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), Name(Discriminator), Rating, Description)
+\item TouristSpot(CountryName(Reference to Country.Name), StateName , CityName , Name(Discriminator), Rating, Description)
 
-\item Historical(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), YearReference)
-\item Scenic(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator))
-\item Historical(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), Religion)
-\item Adventurous(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), AdventureType)
-\item Others(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), Speciality NOT NULL)
+\item Historical(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), YearReference)
+\item Scenic(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator))
+\item Historical(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), Religion)
+\item Adventurous(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), AdventureType)
+\item Others(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), Speciality NOT NULL)
 
 \end{itemize}
 \item OO Approach \newline
 As we have 5 subclasses for TouristSpot Class, here for sake of convenience and readability we are describing only some of the relations, like
 \begin{itemize}
-\item Historical(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), YearReference, Rating, Description)
-\item HistReli(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), YearReference, Religion, Rating, Description)
-\item AdvenHistScenic(CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Discriminator), AdvcentureType, YearReference, Rating, Description)
+\item Historical(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), YearReference, Rating, Description)
+\item HistReli(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), YearReference, Religion, Rating, Description)
+\item AdvenHistScenic(CountryName(Reference to Country.Name), StateName , CityName , SpotName(Discriminator), AdvcentureType, YearReference, Rating, Description)
 \item And many more
 \end{itemize}
 \end{itemize}
@@ -247,11 +247,11 @@ As we have 5 subclasses for TouristSpot Class, here for sake of convenience and 
 \subsubsection{Many-to-many Relationships}
 Here in our Database there are only many-to-many relationships that are "Friends" and "ToVisit", "RatedHotel", "RatedSpot" and "Wishlist". Here “Plan” Entity is modified as per stated in the problem statement corresponding to many-to-many relationships “Friends” and “ToVisit” . Above “Plan” Entity should be ignored. Also "Customer" Relation is also modified corresponding to "Wishlist","RatedSpot" and "RatedHotel". Above "Plan" and “Customer” Entities should be ignored.
 \begin{itemize}
-\item Plan(CustomerID(Reference to Customer.Username), PlanID, GroupID NOT NULL, Date NOT NULL, CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Reference to TouristSpotName)). NumberofGroup corresponds to multi-attribute field
+\item Plan(CustomerID(Reference to Customer.Username), PlanID, GroupID NOT NULL, Date NOT NULL, CountryName(Reference to Country.Name), StateName , CityName , SpotName(Reference to TouristSpotName)). NumberofGroup corresponds to multi-attribute field
 
 \item Group(GroupID(Reference to Friends.GroupID), Friend(Reference to Customer.ID))
 
-\item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address, EmailID NOT NULL, RSCityName(Referenced to City.Name), RSStateName(Referenced to State.Name), RSCountryName(Referenced to Country.Name), SpotName(Referenced to TouristSpot.Name), SpotRating, RHCityName(Referenced to City.Name), RHStateName(Referenced to State.Name), RHCountryName(Referenced to Country.Name), HotelName(Referenced to Hotel.Name), HotelRating, WCityName(Referenced to City.Name), WStateName(Referenced to State.Name), WCountryName(Referenced to Country.Name), WSpotName(Referenced to TouristSpot.Name))
+\item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address, EmailID NOT NULL, RSCityName(Referenced to City.Name), RSStateName(Referenced to State.Name), RSCountryName(Referenced to Country.Name), SpotName(Referenced to TouristSpot.Name), SRating, RHCityName(Referenced to City.Name), RHStateName(Referenced to State.Name), RHCountryName(Referenced to Country.Name), HotelName(Referenced to Hotel.Name), HRating, WCityName(Referenced to City.Name), WStateName(Referenced to State.Name), WCountryName(Referenced to Country.Name), WSpotName(Referenced to TouristSpot.Name))
 \end{itemize}
 
 \subsection{Assertions}
@@ -313,11 +313,9 @@ Here in our Database there are only many-to-many relationships that are "Friends
 \end{itemize}
 \end{itemize}
 
-
-
 \subsection{Normalization}
 \begin{itemize}
-\item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address, EmailID NOT NULL, RSCityName(Referenced to City.Name), RSStateName(Referenced to State.Name), RSCountryName(Referenced to Country.Name), SpotName(Referenced to TouristSpot.Name), SpotRating, RHCityName(Referenced to City.Name), RHStateName(Referenced to State.Name), RHCountryName(Referenced to Country.Name), HotelName(Referenced to Hotel.Name), HotelRating, WCityName(Referenced to City.Name), WStateName(Referenced to State.Name), WCountryName(Referenced to Country.Name), WSpotName(Referenced to TouristSpot.Name)). \newline \newline
+\item Customer(Username PRIMARY KEY, Name NOT NULL, Password NOT NULL, EmailID NOT NULL, Address, EmailID NOT NULL, RSCityName(Referenced to City.Name), RSStateName(Referenced to State.Name), RSCountryName(Referenced to Country.Name), SpotName(Referenced to TouristSpot.Name), SRating, RHCityName(Referenced to City.Name), RHStateName(Referenced to State.Name), RHCountryName(Referenced to Country.Name), HotelName(Referenced to Hotel.Name), HRating, WCityName(Referenced to City.Name), WStateName(Referenced to State.Name), WCountryName(Referenced to Country.Name), WSpotName(Referenced to TouristSpot.Name)). \newline \newline
 We have the following FD’s from the above relation :
 \begin{itemize}
 \item Username $\rightarrow$ Name, Password, Address, EmailID
@@ -328,19 +326,19 @@ We have the following FD’s from the above relation :
 Now we can see that not a single FD is trivial and none of the LHS of the FD is super-key, this implies that the above relation is not in BCNF. Following the rules for BCNF decomposition, we get the following to relations :
 \begin{itemize}
 \item R1(Username, Password, Name, Address, EmailID)
-\item R2(RSCityName, RSStateName, RSCountryName, SpotName, SpotRating, RHCityName, RHStateName, RHCountryName, HotelName, HotelRating, WCityName, WStateName, WCountryName, WSpotName).
+\item R2(RSCityName, RSStateName, RSCountryName, SpotName, SRating, RHCityName, RHStateName, RHCountryName, HotelName, HRating, WCityName, WStateName, WCountryName, WSpotName).
 \end{itemize}
 Now R2 is not in BCNF while R1 is. FD no.1 is still preserved. Applying BCNF decomposition to R2 based on FDs no. 2,3,4, altogether we get four relations, which are:
 \begin{itemize}
 \item R1(Username, Password, Name, Address, EmailID)
-\item R2(Username, RSCityName, RSStateName, RSCountryName, SpotName, SpotRating)
-\item R3(Username, RHCityName, RHStateName, RHCountryName, HotelName, HotelRating)
+\item R2(Username, RSCityName, RSStateName, RSCountryName, SpotName, SRating)
+\item R3(Username, RHCityName, RHStateName, RHCountryName, HotelName, HRating)
 \item R4(Username, WCityName, WStateName, WCountryName, WSpotName)
 \end{itemize}
 
 Since  all the FDs remain preserved after this decomposition, we need not revert to 3NF as there are no added redundancies. Also there is no need for 4NF decomposition.
 
-\item Plan(CustomerID(Reference to Customer.Username), PlanID, GroupID NOT NULL, Date NOT NULL,  CountryName(Reference to Country.Name), StateName(Reference to State.Name), CityName(Reference to City.Name), SpotName(Reference to TouristSpotName)). \newline
+\item Plan(CustomerID(Reference to Customer.Username), PlanID, GroupID NOT NULL, Date NOT NULL,  CountryName(Reference to Country.Name), StateName , CityName , SpotName(Reference to TouristSpotName)). \newline
 *GroupID corresponds to multi attribute field.\newline \newline
 We have the following FDs from the above relation :
 \begin{itemize}
@@ -372,10 +370,36 @@ However, breaking into R3 and R4 reduces no redundancy, infact, redundancy is in
 \subsubsection*{Further Modifications}
 The E/R diagram shows an IS-A relation for the TouristSpot entity. We have modified this. Since a tourist spot can be under more than one IS-A categories, a lot of redundancies will creep in once we build the database. Hence, for the sake of efficient design, we have introduces a ‘Type’ multivalued attribute for the ‘Tourist Spot’ entity. This will contain names of all the former IS-A categories where that particular spot falls like Historical or Religious or Historical and Religious.
 
+\subsection{Final Schema Design}
+Following are the schemas which we are going to use in the project
+\begin{itemize}
+\item Country(\underline{Name}, Currency, ISD)
+\item State(\underline{Country FOREIGN KEY Country.Name), Name}, Cuisine, STDCode)
+\item City(\underline{ Country(FOREIGN KEY Country.Name), State , Name}, Pincode )
+\item TouristSpot(\underline{CountryName(FOREIGN KEY Country.Name), StateName, CityName, SpotName}, Rating, Description, TypeID NOT NULL)
+\item TouristSpotType(TypeID NOT NULL, Type(1 or more than 1 combination of 'Historical', 'Adventerous', 'Religious' and 'Scenic' or 'Other'))
+\item Customer(\underline{Username}, Password, Name, Address, EmailID)
+\item Administrator(\underline{Username}, Password, Name, Address, EmailID, Role('Manager' or 'Employee'))
+\item Schedule(\underline{Username(FOREIGN KEY Customer.Username), TimeStamp}, Event NOT NULL)
+\item History(\underline{CustomerID(FOREIGN KEY Customer.Username), PlanID, Date}, PlaceID NOT NULL)
+\item HistoryPlaces(PlaceID(FOREIGN KEY History.PlaceID), CountryName(FOREIGN KEY Country.Name), StateName , CityName , SpotName)
+\item Plan(\underline{ID})
+\item SpotRating(\underline{Username(FOREIGN KEY Customer.Username), RSCityName , RSStateName , RSCountryName(FOREIGN KEY Country.Name), SpotName}, SRating)
+
+\item HotelRating(\underline{Username(FOREIGN KEY Customer.Username), RHCityName , RHStateName , RHCountryName(FOREIGN KEY Country.Name), HotelName}, HRating)
+
+\item WishList(Username(FOREIGN KEY Customer.Username), WCityName , WStateName , WCountryName(FOREIGN KEY Country.Name), WSpotName)
+
+\item ToVisit(CustomerID(FOREIGN KEY Customer.username), PlanID(FOREIGN KEY Plan.ID), CountryName(FOREIGN KEY Country.Name), StateName, CityName , SpotName, Date).
+\item Friends(\underline{CustomerID(FOREIGN KEY Customer.username), PlanID(FOREIGN KEY Plan.ID)}, GroupID)
+\item Group(GroupID(FOREIGN KEY Friends.GroupID), Friend(FOREIGN Key Customer.ID))
+\item Hotel(CountryName(FOREIGN KEY Country.Name), StateName, CityName, HotelName, Address NOT NULL, PhoneNo NOT NULL, NumberOfHits NOT NULL, Rating NOT NULL)
+\end{itemize}
+
 \subsection{Screen Design}
 %Screen Design are to be found in "screendesign-2013-10-13.zip" in the folder.
 \begin{figure}[ht!]
-\hfill\includegraphics[width=170mm, height=170mm]{./screen_design/home.png}\hspace*{\fill}
+\hfill\includegraphics[width=170mm]{./screen_design/home.png}\hspace*{\fill}
 \caption{Home Screen}
 \end{figure}
 

@@ -58,25 +58,24 @@
         
 
 	<%
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            //String role = request.getParameter("role");
-           //out.println("Performing Authentication..<br>");
+        
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        team_trawell.trawell l=new team_trawell.trawell();
+        l.createConnection();
+        String str=l.loginVerification(username,password);
+        System.out.println(str);
             if (username == null || password == null) {
 				out.print("Invalid paramters ");
             }
  
-            else if (username.toLowerCase().trim().equals("anand") && password.toLowerCase().trim().equals("soni")) {
-                out.println("                                          Welcome " + username + " <a href=\"home.jsp\">Proceed to Home</a>");
+            else if (str.equals("Success!")) {
+                out.println("Welcome " + username + " <a href=\"home.jsp\">Proceed to Home</a>");
                 session.setAttribute("username", username);
                 response.sendRedirect("home.jsp");
             }
-            else if (username.toLowerCase().trim().equals("sanchit") && password.toLowerCase().trim().equals("garg")) {
-                out.println("                                          Welcome " + username + " <a href=\"home.jsp\">Proceed to Home</a>");
-                session.setAttribute("username", username);
-                response.sendRedirect("home.jsp");
-            }
-            
+                        
            else 
                {
                 out.println("Invalid username and password!");

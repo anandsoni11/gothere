@@ -57,31 +57,42 @@
         <div class="page-header">
           <h1>You dream of skies, we get you wings!</h1>
         </div>
-        <div class="row">
-          <div class="span6 offset3">
-            <h4 class="widget-header"><i class="icon-gift"></i> Start with Trawell now!</h4>
-            <div class="widget-body">
-              <div class="center-align">
-                <form action="registersuccess.jsp" class="form-horizontal form-signin-signup">
-                  <input type="text" name="name" placeholder="Name">
-                  <input type="text" name="address" placeholder="Address">
-                  <input type="text" name="email" placeholder="Email">
-                  <input type="text" name="username" placeholder="Choose a Username">
-                  <input type="password" name="password" placeholder="Password">
-                  <input type="password" name="password_confirmation" placeholder="Password Confirmation">
-                  <div>
-                    <input type="submit" name="signup" value="Signup" class="btn btn-primary btn-large">
-                  </div>
-                </form>
-                <h4><i class="icon-question-sign"></i> Already a member?</h4>
-                <a href="login.jsp" class="btn btn-large bottom-space">Sign In Then!</a>
-              </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      </div>
+        <%
+      
+        team_trawell.trawell l=new team_trawell.trawell();
+        l.createConnection();
+        String n = request.getParameter("name");
+        String a = request.getParameter("address");
+        String e = request.getParameter("email");
+        String u = request.getParameter("username");
+        String p = request.getParameter("password");
+        String button1 = request.getParameter("signup");
+      if(button1!=null) {
+        String su=l.addCustomer(n,a,e,u,p);
+        out.println(su);
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+      } 
     
+      %>
+      <a href="login.jsp" class="btn btn-large bottom-space">Sign In Now!</a>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+    </div>
+
+
     <footer>
       <hr class="footer-divider">
       <div class="container">
@@ -93,6 +104,7 @@
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/boot-business.js"></script>
-	</body>
+  </body>
 </html>
+
 

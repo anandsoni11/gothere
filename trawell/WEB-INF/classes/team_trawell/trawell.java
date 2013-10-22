@@ -46,5 +46,28 @@ public class trawell {
 	         System.exit(1);
          }
 	 }
+
+	 public String getCountries() {
+	 	String c="";
+	 	try {
+			PreparedStatement p=conn.prepareStatement("Select country from dummy");
+			//p.setString(1, Movie);
+			p.addBatch();
+			ResultSet rs= p.executeQuery();
+			while(rs.next()) {
+          		c+= rs.getString(1);
+          		c+=",";
+          	}
+			
+		} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+
+		return c;
+	
+	 }
+
+
 	
 }

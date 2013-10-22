@@ -67,12 +67,12 @@
             }
  
             else if (username.toLowerCase().trim().equals("anand") && password.toLowerCase().trim().equals("soni")) {
-                out.println("                                          Welcome " + username + " <a href=\"login.jsp\">Back to Login</a>");
+                out.println("                                          Welcome " + username + " <a href=\"home.jsp\">Proceed to Home</a>");
                 session.setAttribute("username", username);
-                //response.sendRedirect("home.jsp");
+                response.sendRedirect("home.jsp");
             }
             else if (username.toLowerCase().trim().equals("sanchit") && password.toLowerCase().trim().equals("garg")) {
-                out.println("                                          Welcome " + username + " <a href=\"login.jsp\">Back to Login</a>");
+                out.println("                                          Welcome " + username + " <a href=\"home.jsp\">Proceed to Home</a>");
                 session.setAttribute("username", username);
                 response.sendRedirect("home.jsp");
             }

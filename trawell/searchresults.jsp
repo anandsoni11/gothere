@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="team_trawell.*" %>
+<%@ page import="java.util.*" %>
 
 <html lang="en">
   <head>
@@ -45,7 +46,6 @@
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
                 <li><a href="signup.jsp">Sign up</a></li>
-                <li><a href="home.jsp">Home</a></li>
               </ul>
             </div>
           </div>
@@ -59,52 +59,15 @@
       <div class="container">
         <div class="page-header">
           <h1>You dream of skies, we get you wings!</h1>
-        </div>
-        <div class="row">
-          <div class="span6 offset3">
-            <h4 class="widget-header"><i class="icon-lock"></i> Sign In to Trawell</h4>
-            <div class="widget-body">
-              <div class="center-align">
-				<%
-				String myname =  (String)session.getAttribute("username");
-        
-				if(myname!=null)
-				{
-					out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Not "+myname+"? Logout, then!</a>");
-				}
-				else 
-				{
-				%>
- 
-                <form action="checkLogin.jsp" class="form-horizontal form-signin-signup">
-                  <input type="text" name="username" placeholder="Username">
-                  <input type="password" name="password" placeholder="Password">
-                  <div class="remember-me">
-                    <div class="pull-left">
-                      <label class="checkbox">
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
-                    <div class="pull-right">
-                      <a href="#">Forgot password?</a>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <input type="submit" value="Sign In" class="btn btn-primary btn-large">
-                </form>
-			   <% 
-				}
-               %>
-         		
-                <h4><i class="icon-question-sign"></i> Not started trawelling yet?</h4>
-                <a href="signup.jsp" class="btn btn-large bottom-space">Well, Signup Now!</a>
-              </div>
-            </div>
-          </div>
+          <br>
+          <br>
+
+          //Insert java code here!
+
         </div>
       </div>
     </div>
-    
+
     <footer>
       <hr class="footer-divider">
       <div class="container">
@@ -118,3 +81,6 @@
     <script type="text/javascript" src="./js/boot-business.js"></script>
   </body>
 </html>
+
+      
+

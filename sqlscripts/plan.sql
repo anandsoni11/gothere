@@ -1,0 +1,11 @@
+create table plan (planid serial primary key, planname varchar(50) NOT NULL);
+insert into plan(planname) values('plan1');
+insert into plan(planname) values('plan2');
+insert into plan(planname) values('plan3');
+insert into plan(planname) values('plan4');
+insert into plan(planname) values('plan5');
+insert into plan(planname) values('plan6');
+insert into plan(planname) values('plan7');
+insert into plan(planname) values('plan8');
+insert into plan(planname) values('plan9');
+insert into plan(planname) values('plan10');

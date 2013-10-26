@@ -1,1 +1,17 @@
-
+create table touristspottype (typeid integer primary key, type varchar[] NOT NULL);
+insert into touristspottype values(1, ARRAY['Historical']);
+insert into touristspottype values(2, ARRAY['Adventerous']);
+insert into touristspottype values(3, ARRAY['Religious']);
+insert into touristspottype values(4, ARRAY['Scenic']);
+insert into touristspottype values(5, ARRAY['Historical','Adventerous']);
+insert into touristspottype values(6, ARRAY['Historical','Religious']);
+insert into touristspottype values(7, ARRAY['Historical','Scenic']);
+insert into touristspottype values(8, ARRAY['Adventerous','Religious']);
+insert into touristspottype values(9, ARRAY['Adventerous','Scenic']);
+insert into touristspottype values(10, ARRAY['Religious','Scenic']);
+insert into touristspottype values(11, ARRAY['Adventerous','Religious','Scenic']);
+insert into touristspottype values(12, ARRAY['Historical','Religious','Scenic']);
+insert into touristspottype values(13, ARRAY['Historical','Adventerous','Scenic']);
+insert into touristspottype values(14, ARRAY['Historical','Adventerous','Religious']);
+insert into touristspottype values(15, ARRAY['Historical','Adventerous','Religious','Scenic']);
+insert into touristspottype values(16, ARRAY['Other']);

@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="team_trawell.*" %>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -43,6 +45,7 @@
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
                 <li><a href="signup.jsp">Sign up</a></li>
+                <li><a href="home.jsp">Home</a></li>
               </ul>
             </div>
           </div>
@@ -67,7 +70,7 @@
         
 				if(myname!=null)
 				{
-					out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Logout</a>");
+					out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Not "+myname+"? Logout, then!</a>");
 				}
 				else 
 				{

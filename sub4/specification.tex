@@ -1,4 +1,5 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,11pt]{article}
+\usepackage[a4paper,bindingoffset=0.2in,left=1in,right=1in,top=1in,bottom=1in,footskip=.25in]{geometry}
 \usepackage{graphicx}
 \usepackage[none]{hyphenat}
 \usepackage[a4paper]{geometry}
@@ -118,7 +119,8 @@ The following features might prove to be further value additions to this project
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=200mm]{er.png}
+\makebox[\textwidth]{\includegraphics[width=\paperwidth]{er.png}}
+%\includegraphics[width=200mm]{er.png}
 \caption{E-R Model}
 \label{overflow}
 \end{figure}
@@ -375,25 +377,24 @@ Following are the schemas which we are going to use in the project
 \begin{itemize}
 \item Country(\underline{Name}, Currency, ISD)
 \item State(\underline{Country FOREIGN KEY Country.Name), Name}, Cuisine, STDCode)
-\item City(\underline{ Country(FOREIGN KEY Country.Name), State , Name}, Pincode )
-\item TouristSpot(\underline{CountryName(FOREIGN KEY Country.Name), StateName, CityName, SpotName}, Rating, Description, TypeID NOT NULL)
+\item City(\underline{ID AUTO INCREMENT},Country(FOREIGN KEY Country.Name), State(FOREIGN KEY State.Name) , Name, Pincode )
+\item TouristSpot(\underline{City.ID, SpotName}, Rating, Description, TypeID NOT NULL)
 \item TouristSpotType(TypeID NOT NULL, Type(1 or more than 1 combination of 'Historical', 'Adventerous', 'Religious' and 'Scenic' or 'Other'))
 \item Customer(\underline{Username}, Password, Name, Address, EmailID)
 \item Administrator(\underline{Username}, Password, Name, Address, EmailID, Role('Manager' or 'Employee'))
 \item Schedule(\underline{Username(FOREIGN KEY Customer.Username), TimeStamp}, Event NOT NULL)
 \item History(\underline{CustomerID(FOREIGN KEY Customer.Username), PlanID, Date}, PlaceID NOT NULL)
-\item HistoryPlaces(PlaceID(FOREIGN KEY History.PlaceID), CountryName(FOREIGN KEY Country.Name), StateName , CityName , SpotName)
+\item HistoryPlaces(PlaceID(FOREIGN KEY History.PlaceID), City.ID , SpotName(FOREIGN KEY TouristSpot.Name))
 \item Plan(\underline{ID})
-\item SpotRating(\underline{Username(FOREIGN KEY Customer.Username), RSCityName , RSStateName , RSCountryName(FOREIGN KEY Country.Name), SpotName}, SRating)
-
-\item HotelRating(\underline{Username(FOREIGN KEY Customer.Username), RHCityName , RHStateName , RHCountryName(FOREIGN KEY Country.Name), HotelName}, HRating)
-
-\item WishList(Username(FOREIGN KEY Customer.Username), WCityName , WStateName , WCountryName(FOREIGN KEY Country.Name), WSpotName)
-
-\item ToVisit(CustomerID(FOREIGN KEY Customer.username), PlanID(FOREIGN KEY Plan.ID), CountryName(FOREIGN KEY Country.Name), StateName, CityName , SpotName, Date).
+\item SpotRating(Username(FOREIGN KEY Customer.Username), CityID(FOREIGN KEY City.ID), SpotName (FOREIGN KEY TouristSpot.Name), SRating)
+\newline \textbf{*Primary Key :- Username, CityID, SpotName}
+\item HotelRating(Username(FOREIGN KEY Customer.Username), CityID(FOREIGN KEY City.ID), HotelName, HRating)
+\newline \textbf{*Primary Key :- Username, CityID, HotelName}
+\item WishList(Username(FOREIGN KEY Customer.Username), CityID(FOREIGN KEY City.ID), WSpotName(FOREIGN KEY TouristSpot.Name))
+\item ToVisit(CustomerID(FOREIGN KEY Customer.username), PlanID(FOREIGN KEY Plan.ID), CityID(FOREIGN KEY City.ID), SpotName(FOREIGN KEY TouristSpot.Name), Date).
 \item Friends(\underline{CustomerID(FOREIGN KEY Customer.username), PlanID(FOREIGN KEY Plan.ID)}, GroupID)
 \item Group(GroupID(FOREIGN KEY Friends.GroupID), Friend(FOREIGN Key Customer.ID))
-\item Hotel(CountryName(FOREIGN KEY Country.Name), StateName, CityName, HotelName, Address NOT NULL, PhoneNo NOT NULL, NumberOfHits NOT NULL, Rating NOT NULL)
+\item Hotel(CityID(FOREIGN KEY City.ID), HotelName, Address NOT NULL, PhoneNo NOT NULL, NumberOfHits NOT NULL, Rating NOT NULL)
 \end{itemize}
 
 \subsection{Screen Design}

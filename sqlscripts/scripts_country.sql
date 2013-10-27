@@ -1,4 +1,4 @@
-CREATE table countries (countryname varchar(40) primary key, currency varchar(25), isd bigint);
+CREATE table countries (countryname varchar(40) primary key, currency varchar(25), isd integer);
 INSERT INTO countries values ('Afghanistan','Afghani',1);
 INSERT INTO countries values ('Albania','Lek',2);
 INSERT INTO countries values ('Algeria','Dinar',3);

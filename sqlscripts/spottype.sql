@@ -1,3 +1,4 @@
+drop table touristspottype;
 create table touristspottype (typeid integer primary key, type varchar[] NOT NULL);
 insert into touristspottype values(1, ARRAY['Historical']);
 insert into touristspottype values(2, ARRAY['Adventerous']);

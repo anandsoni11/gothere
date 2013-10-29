@@ -255,8 +255,70 @@ public class trawell {
 		}
 	 	return c;
 	 }
+
+	 public String getNameofUser(String username) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select name from customer_dummy where username=?");
+	 		p.setString(1,username);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;		
+ 	}
+	 
+
+	 public String getAddressofUser(String username) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select address from customer_dummy where username=?");
+	 		p.setString(1,username);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;		
+ 	}
+	 
+
+	 public String getEmailofUser(String username) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select email from customer_dummy where username=?");
+	 		p.setString(1,username);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;		
+	 }
+
+	 public void changePassword(String username) {
+	 	
+	 }
+}
+
 	 
 
 
 	
-}
+

@@ -64,10 +64,7 @@
         
           if(myname!=null)
           {
-            out.println("Welcome  "+myname+", <a href=\"logout.jsp\" >Logout</a>");
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<br>");
+            response.sendRedirect("home_loggedin.jsp");
           }
           %>
           <h1>You dream of skies, we get you wings!</h1>
@@ -76,7 +73,7 @@
 
           <h4>Search your dream spot here :</h4>
           <form action="searchresults.jsp" class="form-horizontal form-signin-signup">
-            <input type="text" name="spot" placeholder="Your dream destination">
+            <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
           <h4>Search your destination by Country here!</h4>

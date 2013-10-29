@@ -70,7 +70,7 @@
         
 				if(myname!=null)
 				{
-					out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Not "+myname+"? Logout, then!</a>");
+					out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Sign Out!</a>");
 				}
 				else 
 				{

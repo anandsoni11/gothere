@@ -2,6 +2,8 @@
 <%@ page import="team_trawell.*" %>
 <%@ page import="java.util.*" %>
 
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,7 +17,11 @@
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome-ie7.css" />
 	<link type="text/css" rel="stylesheet" href="./css/boot-business.css" />
-	
+	<script>
+    function setAttributeonClick(String s) {
+    session.setAttribute("state",s);
+  }
+  </script>
 	
   </head>
   <body>
@@ -35,6 +41,13 @@
             </button>
        
             <div class="nav-collapse collapse">        
+              <ul class="nav pull-left">
+              <li><a href="profile.jsp">Profile</a></li>
+              <li><a href="plan.jsp">Plan</a></li>
+              <li><a href="history.jsp">History</a></li>
+              <li><a href="wishlist.jsp">Wishlist</a></li>
+              </ul>        
+              
               <ul class="nav pull-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
@@ -61,33 +74,42 @@
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
-          
+          <%
+        String myname =  (String)session.getAttribute("username");
+        
+        if(myname!=null)
+        {
+          out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Not "+myname+"? Logout, then!</a>");
+        }
+        %>
+
           <h4>Search your dream spot here :</h4>
-          <form action="searchresults.jsp" class="form-horizontal form-signin-signup">
+          <form action="searchresults_loggedin.jsp" class="form-horizontal form-signin-signup">
             <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>Search your destination by popular spots here!</h4>
+          <h4>Search your destination by States here!</h4>
         </div>
           <%
+          String s="india";
           //Insert java code here.
-          String country = request.getParameter("country");
-          String state = request.getParameter("state");
-          String city = request.getParameter("name");
-          String id = request.getParameter("id");
-          int ids = Integer.parseInt(id);
+          String country = request.getParameter("name");
+          //String country = (String)session.getAttribute("country");
           team_trawell.trawell l = new team_trawell.trawell();
-          l.createConnection();
-          String c= l.searchSpotsforaCity(ids);
+          l.createConnection();  
+          String c= l.searchStatesforaCountry(country);
           StringTokenizer st = new StringTokenizer(c, ",");
           while (st.hasMoreElements()) {
-           String s = (String)st.nextElement();
-           //session.setAttribute("spot",s);
-           s="<a href=\"spotresults.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +s+"</a>";
+           s = (String)st.nextElement();
+
+           s="<a href=\"stateresults_loggedin.jsp?name=" + s + "&country="+country+  "\"> "  +s+"</a>";
+           //session.setAttribute("state",s);
            out.println(s);
            out.println("<br>");
           }  
           %>
+          
+         
         </div>
       </div>
     </div>

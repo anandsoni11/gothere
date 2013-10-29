@@ -61,13 +61,13 @@
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
-
+          
           <h4>Search your dream spot here :</h4>
           <form action="searchresults.jsp" class="form-horizontal form-signin-signup">
-            <input type="text" name="spot" placeholder="Your dream destination">
+            <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>And we are there! Explore this magical place through words and imagination!</h4>
+          <h4>And we are there!</h4>
         </div>
           <%
           //Insert java code here.
@@ -79,18 +79,31 @@
           int ids = Integer.parseInt(id);
           team_trawell.trawell l = new team_trawell.trawell();
           l.createConnection();
-          String c= l.getSpotDescription(spot,ids);
-          out.println(c);
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
-          out.println("<br>");
+          out.println("<h5>Exlpore this magical place through these words and your imagination!</h5> ");
             
+          String c= l.getSpotDescription(spot,ids);
+          StringTokenizer st = new StringTokenizer(c, ":");
+          while (st.hasMoreElements()) {
+            String s = (String)st.nextElement();
+            //session.setAttribute("country",s);
+            //s="<a href=\"countryresults.jsp?name=" + s + "  \"> "  +s+"</a>";
+            out.println(s);
+            out.println("<br>");
+            out.println("<br>");
+            out.println("Current visitors' rating for this spot:");
+            out.println("<br>");
+          }
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+          
+                      
           %>
         </div>
       </div>

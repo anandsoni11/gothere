@@ -35,6 +35,13 @@
             </button>
        
             <div class="nav-collapse collapse">        
+              <ul class="nav pull-left">
+              <li><a href="profile.jsp">Profile</a></li>
+              <li><a href="plan.jsp">Plan</a></li>
+              <li><a href="history.jsp">History</a></li>
+              <li><a href="wishlist.jsp">Wishlist</a></li>
+              </ul>        
+            
               <ul class="nav pull-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
@@ -61,32 +68,56 @@
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
-          
+          <%
+        String myname =  (String)session.getAttribute("username");
+        
+        if(myname!=null)
+        {
+          out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Not "+myname+"? Logout, then!</a>");
+        }
+        %>
           <h4>Search your dream spot here :</h4>
-          <form action="searchresults.jsp" class="form-horizontal form-signin-signup">
+          <form action="searchresults_loggedin.jsp" class="form-horizontal form-signin-signup">
             <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>Search your destination by popular spots here!</h4>
+          <h4>And we are there!</h4>
         </div>
           <%
           //Insert java code here.
           String country = request.getParameter("country");
           String state = request.getParameter("state");
-          String city = request.getParameter("name");
+          String city = request.getParameter("city");
           String id = request.getParameter("id");
+          String spot = request.getParameter("name");
           int ids = Integer.parseInt(id);
           team_trawell.trawell l = new team_trawell.trawell();
           l.createConnection();
-          String c= l.searchSpotsforaCity(ids);
-          StringTokenizer st = new StringTokenizer(c, ",");
+          out.println("<h5>Exlpore this magical place through these words and your imagination!</h5> ");
+            
+          String c= l.getSpotDescription(spot,ids);
+          StringTokenizer st = new StringTokenizer(c, ":");
           while (st.hasMoreElements()) {
-           String s = (String)st.nextElement();
-           //session.setAttribute("spot",s);
-           s="<a href=\"spotresults.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +s+"</a>";
-           out.println(s);
-           out.println("<br>");
-          }  
+            String s = (String)st.nextElement();
+            //session.setAttribute("country",s);
+            //s="<a href=\"countryresults.jsp?name=" + s + "  \"> "  +s+"</a>";
+            out.println(s);
+            out.println("<br>");
+            out.println("<br>");
+            out.println("Current visitors' rating for this spot:");
+            out.println("<br>");
+          }
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+          
+                      
           %>
         </div>
       </div>

@@ -219,13 +219,15 @@ public class trawell {
 	 public String getSpotDescription(String spot, int id) {
 	 	String c="";
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("Select description from touristspots where cityid=? and spotname=?");
+	 		PreparedStatement p=conn.prepareStatement("Select description,rating from touristspots where cityid=? and spotname=?");
 	 		p.setInt(1,id);
 	 		p.setString(2,spot);
 	 		p.addBatch();
 	 		ResultSet rs= p.executeQuery();
 	 		while(rs.next()) {
-	 			c=rs.getString(1);
+	 			c+=rs.getString(1);
+	 			c+=":";
+	 			c+=rs.getString(2);
 	 		}
 	 	} catch (SQLException sqle) {
 			System.out.println(sqle);
@@ -233,6 +235,27 @@ public class trawell {
 		}
 	 	return c;
 	 }
+
+	 public String getSpotbyName(String spot) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select cityid, spotname from touristspots where spotname=?");
+	 		p.setString(1,spot);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c+=rs.getString(1);
+	 			c+=",";
+	 			c+=rs.getString(2);
+	 			c+=":";
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;
+	 }
+	 
 
 
 	

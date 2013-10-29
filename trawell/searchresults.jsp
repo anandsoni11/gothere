@@ -61,9 +61,42 @@
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
+          
+          <%
+        out.println("<br>");
+        out.println("<h3>The following places match your search request. Please let us know your choice.</h3>");
+        
+        String searchvalue = request.getParameter("spotsearchbyname");
+        team_trawell.trawell l = new team_trawell.trawell();
+        l.createConnection();
+        String s1="",s2="";  
+        String c= l.getSpotbyName(searchvalue);
+        StringTokenizer st = new StringTokenizer(c, ":");
+        while (st.hasMoreElements()) {
+          String s = (String)st.nextElement();
+          StringTokenizer st1 = new StringTokenizer(s, ",");
+          while(st1.hasMoreElements()) {
+            s1 = (String)st1.nextElement();
+            s2 = (String)st1.nextElement();
+          }
+          //session.setAttribute("country",s);
+          s="<a href=\"searchresultsfinal.jsp?sid=" + s1 +"&spotn="+s2+ "  \"> "  +s+"</a>";
+          out.println(s);
+          out.println("<br>");
+          }
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+        
 
-          //Insert java code here!
-
+         %>
         </div>
       </div>
     </div>

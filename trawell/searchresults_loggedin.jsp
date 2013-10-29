@@ -34,7 +34,14 @@
               <span class="icon-bar"></span>
             </button>
        
-            <div class="nav-collapse collapse">        
+            <div class="nav-collapse collapse">   
+            <ul class="nav pull-left">
+              <li><a href="profile.jsp">Profile</a></li>
+              <li><a href="plan.jsp">Plan</a></li>
+              <li><a href="history.jsp">History</a></li>
+              <li><a href="wishlist.jsp">Wishlist</a></li>
+              </ul>        
+                
               <ul class="nav pull-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
@@ -62,32 +69,47 @@
           <br>
           <br>
           
-          <h4>Search your dream spot here :</h4>
-          <form action="searchresults.jsp" class="form-horizontal form-signin-signup">
-            <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
-            <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
-          </form>
-          <h4>Search your destination by popular spots here!</h4>
-        </div>
           <%
-          //Insert java code here.
-          String country = request.getParameter("country");
-          String state = request.getParameter("state");
-          String city = request.getParameter("name");
-          String id = request.getParameter("id");
-          int ids = Integer.parseInt(id);
-          team_trawell.trawell l = new team_trawell.trawell();
-          l.createConnection();
-          String c= l.searchSpotsforaCity(ids);
-          StringTokenizer st = new StringTokenizer(c, ",");
-          while (st.hasMoreElements()) {
-           String s = (String)st.nextElement();
-           //session.setAttribute("spot",s);
-           s="<a href=\"spotresults.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +s+"</a>";
-           out.println(s);
-           out.println("<br>");
-          }  
-          %>
+        String myname =  (String)session.getAttribute("username");
+        
+        if(myname!=null)
+        {
+          out.println("Welcome  "+myname+"  , <a href=\"logout.jsp\" >Logout!</a>");
+        }
+        out.println("<br>");
+        out.println("<h3>The following places match your search request. Please let us know your choice.</h3>");
+        
+        String searchvalue = request.getParameter("spotsearchbyname");
+        team_trawell.trawell l = new team_trawell.trawell();
+        l.createConnection();
+        String s1="",s2="";  
+        String c= l.getSpotbyName(searchvalue);
+        StringTokenizer st = new StringTokenizer(c, ":");
+        while (st.hasMoreElements()) {
+          String s = (String)st.nextElement();
+          StringTokenizer st1 = new StringTokenizer(s, ",");
+          while(st1.hasMoreElements()) {
+            s1 = (String)st1.nextElement();
+            s2 = (String)st1.nextElement();
+          }
+          //session.setAttribute("country",s);
+          s="<a href=\"searchresultsfinal_loggedin.jsp?sid=" + s1 +"&spotn="+s2+ "  \"> "  +s+"</a>";
+          out.println(s);
+          out.println("<br>");
+          }
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+        
+
+         %>
         </div>
       </div>
     </div>
@@ -107,4 +129,4 @@
 </html>
 
       
-  
+

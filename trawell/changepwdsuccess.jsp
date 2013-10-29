@@ -83,6 +83,7 @@
         
           %>
         <h3>Password Changed Successfully!</h3>
+        <h4>Go Back!</h4>
         <h5><a href="home_loggedin.jsp">Return to Home</a></h5>
         </div>
       </div>

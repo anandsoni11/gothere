@@ -2,8 +2,6 @@
 <%@ page import="team_trawell.*" %>
 <%@ page import="java.util.*" %>
 
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -17,11 +15,7 @@
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome-ie7.css" />
 	<link type="text/css" rel="stylesheet" href="./css/boot-business.css" />
-	<script>
-    function setAttributeonClick(String s) {
-    session.setAttribute("state",s);
-  }
-  </script>
+	
 	
   </head>
   <body>
@@ -73,28 +67,31 @@
             <input type="text" name="spot" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>Search your destination by States here!</h4>
+          <h4>And we are there! Explore this magical place through words and imagination!</h4>
         </div>
           <%
-          String s="india";
           //Insert java code here.
-          String country = request.getParameter("name");
-          //String country = (String)session.getAttribute("country");
+          String country = request.getParameter("country");
+          String state = request.getParameter("state");
+          String city = request.getParameter("city");
+          String id = request.getParameter("id");
+          String spot = request.getParameter("name");
+          int ids = Integer.parseInt(id);
           team_trawell.trawell l = new team_trawell.trawell();
-          l.createConnection();  
-          String c= l.searchStatesforaCountry(country);
-          StringTokenizer st = new StringTokenizer(c, ",");
-          while (st.hasMoreElements()) {
-           s = (String)st.nextElement();
-
-           s="<a href=\"stateresults.jsp?name=" + s + "&country="+country+  "\"> "  +s+"</a>";
-           //session.setAttribute("state",s);
-           out.println(s);
-           out.println("<br>");
-          }  
+          l.createConnection();
+          String c= l.getSpotDescription(spot,ids);
+          out.println(c);
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+          out.println("<br>");
+            
           %>
-          
-         
         </div>
       </div>
     </div>

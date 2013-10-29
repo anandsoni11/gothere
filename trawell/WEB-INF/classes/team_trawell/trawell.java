@@ -50,7 +50,7 @@ public class trawell {
 	 public String getCountries() {
 	 	String c="";
 	 	try {
-			PreparedStatement p=conn.prepareStatement("Select country from dummy");
+			PreparedStatement p=conn.prepareStatement("Select countryname from countries");
 			//p.setString(1, Movie);
 			p.addBatch();
 			ResultSet rs= p.executeQuery();
@@ -111,6 +111,127 @@ public class trawell {
 		}
 			String fin = result;
 			return fin;
+	 }
+
+	 //Modify this soon!
+	 public String searchBySpot(String spot) {
+	 	String c="";
+	 	try {
+			PreparedStatement p=conn.prepareStatement("Select spotname from touristspots where spotname=?");
+			p.setString(1, spot);
+			p.addBatch();
+			ResultSet rs= p.executeQuery();
+			while(rs.next()) {
+          		c+= rs.getString(1);
+          		c+=",";
+          	}
+			
+		} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+
+		return c;
+	
+	 }
+
+	 public String searchStatesforaCountry(String country) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select statename from states where countryname=?");
+	 		p.setString(1,country);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c+=rs.getString(1);
+	 			c+=",";
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+
+		return c;
+	 }
+
+	 public String searchCitiesforaState(String state, String country) {
+	 	String c="";
+	 	System.out.println("Hey! "+country+" "+state);
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select cityname from cities where countryname=? and statename=?");
+	 		p.setString(1,country);
+	 		p.setString(2,state);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c+=rs.getString(1);
+	 			c+=",";
+	 		}
+	 		System.out.println(c);
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+
+		return c;
+	 }
+
+	 public int getCityID(String city, String state, String country) {
+	 	int c=0;
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select cityid from cities where cityname=? and statename=? and countryname=?");
+	 		p.setString(1,city);
+	 		p.setString(2,state);
+	 		p.setString(3,country);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getInt(1);	
+	 		}
+	 	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+		System.out.println("Here is c: "+c);
+		return c;
+	 }
+
+	 public String searchSpotsforaCity(int cityid) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select spotname from touristspots where cityid=?");
+	 		p.setInt(1,cityid);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c+=rs.getString(1);
+	 			c+=",";
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+
+		return c;
+	 }
+
+	 public String getSpotDescription(String spot, int id) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select description from touristspots where cityid=? and spotname=?");
+	 		p.setInt(1,id);
+	 		p.setString(2,spot);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;
 	 }
 
 

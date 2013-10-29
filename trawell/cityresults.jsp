@@ -2,8 +2,6 @@
 <%@ page import="team_trawell.*" %>
 <%@ page import="java.util.*" %>
 
-
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -17,11 +15,7 @@
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome-ie7.css" />
 	<link type="text/css" rel="stylesheet" href="./css/boot-business.css" />
-	<script>
-    function setAttributeonClick(String s) {
-    session.setAttribute("state",s);
-  }
-  </script>
+	
 	
   </head>
   <body>
@@ -73,28 +67,27 @@
             <input type="text" name="spot" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>Search your destination by States here!</h4>
+          <h4>Search your destination by popular spots here!</h4>
         </div>
           <%
-          String s="india";
           //Insert java code here.
-          String country = request.getParameter("name");
-          //String country = (String)session.getAttribute("country");
+          String country = request.getParameter("country");
+          String state = request.getParameter("state");
+          String city = request.getParameter("name");
+          String id = request.getParameter("id");
+          int ids = Integer.parseInt(id);
           team_trawell.trawell l = new team_trawell.trawell();
-          l.createConnection();  
-          String c= l.searchStatesforaCountry(country);
+          l.createConnection();
+          String c= l.searchSpotsforaCity(ids);
           StringTokenizer st = new StringTokenizer(c, ",");
           while (st.hasMoreElements()) {
-           s = (String)st.nextElement();
-
-           s="<a href=\"stateresults.jsp?name=" + s + "&country="+country+  "\"> "  +s+"</a>";
-           //session.setAttribute("state",s);
+           String s = (String)st.nextElement();
+           //session.setAttribute("spot",s);
+           s="<a href=\"spotresults.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +s+"</a>";
            out.println(s);
            out.println("<br>");
           }  
           %>
-          
-         
         </div>
       </div>
     </div>

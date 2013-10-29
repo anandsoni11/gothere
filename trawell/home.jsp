@@ -91,7 +91,9 @@
         StringTokenizer st = new StringTokenizer(c, ",");
         while (st.hasMoreElements()) {
           String s = (String)st.nextElement();
-          out.println("<a href=\"countryresults.jsp\" >"+s+"</a>");
+          //session.setAttribute("country",s);
+          s="<a href=\"countryresults.jsp?name=" + s + "  \"> "  +s+"</a>";
+          out.println(s);
           out.println("<br>");
         }
 

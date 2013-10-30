@@ -1,0 +1,974 @@
+CS 387 - DATABASE AND INFORMATION SYSTEMS LAB 
+
+PROJECT - TRAWELL
+
+Submitted By - Mridul Garg (110050030), Anand Soni (110050037), Sanchit Garg (110050035), Himanshu Roy (110050019)
+
+**************************************************************************************************************************************
+
+Part - a (SQL Scripts)
+
+drop table if exists administrator;
+CREATE TABLE administrator (username varchar(25) primary key, password varchar(25) not null, name varchar(50) not null, address varchar(200), emailid varchar(150) not null CHECK (emailid ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'), role varchar(30) not null check (role = 'Manager' or role='Employee'));
+INSERT INTO administrator values('anand','soni','Anand Soni', 'IIT Bombay', 'anand.92.soni@gmail.com','Manager'); 
+INSERT INTO administrator values('sanchit','garg','Sanchit Garg', 'IIT Bombay', 'garg.sanchitiitb@gmail.com','Manager');
+INSERT INTO administrator values('mridul','garg','Mridul Garg', 'IIT Bombay', 'gmridul09@gmail.com','Manager');
+INSERT INTO administrator values('himanshu','roy','Himanshu Roy', 'IIT Bombay', 'himanshubudak@gmail.com','Manager');
+
+drop table if exists customer;
+CREATE TABLE customer (username varchar(25) primary key, password varchar(25) not null, name varchar(50) not null, address varchar(200), emailid varchar(150) not null CHECK (emailid ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'));
+insert into customer values('mridul', 'mridul', 'mridul garg', 'kota', 'gmridul09@gmail.com');
+
+
+drop table if exists countries;
+CREATE table countries (countryname varchar(40) primary key, currency varchar(25), isd integer);
+INSERT INTO countries values ('Afghanistan','Afghani',1);
+INSERT INTO countries values ('Albania','Lek',2);
+INSERT INTO countries values ('Algeria','Dinar',3);
+INSERT INTO countries values ('Andorra','Euro',4);
+INSERT INTO countries values ('Angola','New Kwanza',5);
+INSERT INTO countries values ('Antigua and Barbuda','East Caribbean dollar',6);
+INSERT INTO countries values ('Argentina','Peso',7);
+INSERT INTO countries values ('Armenia','Dram',8);
+INSERT INTO countries values ('Australia','Australian dollar',9);
+INSERT INTO countries values ('Austria','Euro',10);
+INSERT INTO countries values ('Azerbaijan','Manat',11);
+INSERT INTO countries values ('Bahamas','Bahamian dollar',12);
+INSERT INTO countries values ('Bahrain','Bahrain dinar',13);
+INSERT INTO countries values ('Bangladesh','Taka',14);
+INSERT INTO countries values ('Barbados','Barbados dollar',15);
+INSERT INTO countries values ('Belarus','Belorussian ruble',16);
+INSERT INTO countries values ('Belgium','Euro',17);
+INSERT INTO countries values ('Belize','Belize dollar',18);
+INSERT INTO countries values ('Benin','CFA Franc',19);
+INSERT INTO countries values ('Bhutan','Ngultrum',20);
+INSERT INTO countries values ('Bolivia','Boliviano',21);
+INSERT INTO countries values ('Bosnia and Herzegovina','Marka',22);
+INSERT INTO countries values ('Botswana','Pula',23);
+INSERT INTO countries values ('Brazil','Real',24);
+INSERT INTO countries values ('Brunei','Brunei dollar',25);
+INSERT INTO countries values ('Bulgaria','Lev',26);
+INSERT INTO countries values ('Burkina Faso','CFA Franc',27);
+INSERT INTO countries values ('Burundi','Burundi franc',28);
+INSERT INTO countries values ('Cambodia','Riel',29);
+INSERT INTO countries values ('Cameroon','CFA Franc',30);
+INSERT INTO countries values ('Canada','Canadian dollar',31);
+INSERT INTO countries values ('Cape Verde','Cape Verdean escudo',32);
+INSERT INTO countries values ('Central African Republic','CFA Franc',33);
+INSERT INTO countries values ('Chad','CFA Franc',34);
+INSERT INTO countries values ('Chile','Chilean Peso',35);
+INSERT INTO countries values ('China','Yuan/Renminbi',36);
+INSERT INTO countries values ('Colombia','Colombian Peso',37);
+INSERT INTO countries values ('Comoros','Franc',38);
+INSERT INTO countries values ('Congo','Congolese franc',39);
+INSERT INTO countries values ('Republic of Congo','CFA Franc',40);
+INSERT INTO countries values ('Costa Rica','Colón',41);
+INSERT INTO countries values ('Côte dIvoire','CFA Franc',42);
+INSERT INTO countries values ('Croatia','Kuna',43);
+INSERT INTO countries values ('Cuba','Cuban Peso',44);
+INSERT INTO countries values ('Cyprus','Cyprus pound',45);
+INSERT INTO countries values ('Czech Republic','Koruna',46);
+INSERT INTO countries values ('Denmark','Krone',47);
+INSERT INTO countries values ('Djibouti','Djibouti franc',48);
+INSERT INTO countries values ('Dominica','East Caribbean dollar',49);
+INSERT INTO countries values ('Dominican Republic','Dominican Peso',50);
+INSERT INTO countries values ('East Timor','U.S. dollar',51);
+INSERT INTO countries values ('Ecuador','US dollar',52);
+INSERT INTO countries values ('Egypt','Egyptian pound',53);
+INSERT INTO countries values ('El Salvador','U.S. dollar',54);
+INSERT INTO countries values ('Equatorial Guinea','CFA Franc',55);
+INSERT INTO countries values ('Eritrea','Nakfa',56);
+INSERT INTO countries values ('Estonia','Kroon',57);
+INSERT INTO countries values ('Ethiopia','Birr',58);
+INSERT INTO countries values ('Fiji','Fiji dollar',59);
+INSERT INTO countries values ('Finland','Euro',60);
+INSERT INTO countries values ('France','Euro',61);
+INSERT INTO countries values ('Gabon','CFA Franc',62);
+INSERT INTO countries values ('Gambia','Dalasi',63);
+INSERT INTO countries values ('Georgia','Lari',64);
+INSERT INTO countries values ('Germany','Euro',65);
+INSERT INTO countries values ('Ghana','Cedi',66);
+INSERT INTO countries values ('Greece','Euro',67);
+INSERT INTO countries values ('Grenada','East Caribbean dollar',68);
+INSERT INTO countries values ('Guatemala','Quetzal',69);
+INSERT INTO countries values ('Guinea','Guinean franc',70);
+INSERT INTO countries values ('Guinea-Bissau','CFA Franc',71);
+INSERT INTO countries values ('Guyana','Guyanese dollar',72);
+INSERT INTO countries values ('Haiti','Gourde',73);
+INSERT INTO countries values ('Honduras','Lempira',74);
+INSERT INTO countries values ('Hungary','Forint',75);
+INSERT INTO countries values ('Iceland','Icelandic króna',76);
+INSERT INTO countries values ('India','Rupee',91);
+INSERT INTO countries values ('Indonesia','Rupiah',77);
+INSERT INTO countries values ('Iran','Rial',78);
+INSERT INTO countries values ('Iraq','US dollar',79);
+INSERT INTO countries values ('Ireland','Euro',80);
+INSERT INTO countries values ('Israel','Shekel',81);
+INSERT INTO countries values ('Italy','Euro',82);
+INSERT INTO countries values ('Jamaica','Jamaican dollar',83);
+INSERT INTO countries values ('Japan','Yen',84);
+INSERT INTO countries values ('Jordan','Jordanian dinar',85);
+INSERT INTO countries values ('Kazakhstan','Tenge',86);
+INSERT INTO countries values ('Kenya','Kenya shilling',87);
+INSERT INTO countries values ('Kiribati','Australian dollar',88);
+INSERT INTO countries values ('North Korea','Won',89);
+INSERT INTO countries values ('South Korea','Won',90);
+INSERT INTO countries values ('Kuwait','Kuwaiti dinar',92);
+INSERT INTO countries values ('Kyrgyzstan','Som',93);
+INSERT INTO countries values ('Laos','New Kip',94);
+INSERT INTO countries values ('Latvia','Lats',95);
+INSERT INTO countries values ('Lebanon','Lebanese pound',96);
+INSERT INTO countries values ('Lesotho','Maluti',97);
+INSERT INTO countries values ('Liberia','Liberian dollar',98);
+INSERT INTO countries values ('Libya','Libyan dinar',99);
+INSERT INTO countries values ('Liechtenstein','Swiss franc',100);
+INSERT INTO countries values ('Lithuania','Litas',101);
+INSERT INTO countries values ('Luxembourg','Euro',102);
+INSERT INTO countries values ('Macedonia','Denar',103);
+INSERT INTO countries values ('Madagascar','Malagasy franc',104);
+INSERT INTO countries values ('Malawi','Kwacha',105);
+INSERT INTO countries values ('Malaysia','Ringgit',106);
+INSERT INTO countries values ('Maldives','Rufiya',107);
+INSERT INTO countries values ('Mali','CFA Franc',108);
+INSERT INTO countries values ('Malta','Euro',109);
+INSERT INTO countries values ('Mauritania','Ouguiya',110);
+INSERT INTO countries values ('Mauritius','Mauritian rupee',111);
+INSERT INTO countries values ('Mexico','Mexican peso',112);
+INSERT INTO countries values ('Moldova','Leu',113);
+INSERT INTO countries values ('Monaco','Euro',114);
+INSERT INTO countries values ('Mongolia','Tugrik',115);
+INSERT INTO countries values ('Montenegro','Euro',116);
+INSERT INTO countries values ('Morocco','Dirham',117);
+INSERT INTO countries values ('Mozambique','Metical',118);
+INSERT INTO countries values ('Myanmar','Kyat',119);
+INSERT INTO countries values ('Namibia','Namibian dollar',120);
+INSERT INTO countries values ('Nauru','Australian dollar',121);
+INSERT INTO countries values ('Nepal','Nepalese rupee',122);
+INSERT INTO countries values ('Netherlands','Euro',123);
+INSERT INTO countries values ('New Zealand','New Zealand dollar',124);
+INSERT INTO countries values ('Nicaragua','Gold cordoba',125);
+INSERT INTO countries values ('Niger','CFA Franc',126);
+INSERT INTO countries values ('Nigeria','Naira',127);
+INSERT INTO countries values ('Norway','Norwegian krone',128);
+INSERT INTO countries values ('Oman','Omani rial',129);
+INSERT INTO countries values ('Pakistan','Pakistan rupee',130);
+INSERT INTO countries values ('Palau','US dollar',131);
+INSERT INTO countries values ('Palestinian State','Jordanian dinars',132);
+INSERT INTO countries values ('Panama balboa',' US dollar',133);
+INSERT INTO countries values ('Papua New Guinea','Kina',134);
+INSERT INTO countries values ('Paraguay','Guaraní',135);
+INSERT INTO countries values ('Peru','Nuevo sol',136);
+INSERT INTO countries values ('Philippines','Peso',137);
+INSERT INTO countries values ('Poland','Zloty',138);
+INSERT INTO countries values ('Portugal','Euro',139);
+INSERT INTO countries values ('Qatar','Qatari riyal',140);
+INSERT INTO countries values ('Romania','Leu',141);
+INSERT INTO countries values ('Russia','Ruble',142);
+INSERT INTO countries values ('Rwanda','Rwanda franc',143);
+INSERT INTO countries values ('St. Kitts and Nevis','East Caribbean dollar',144);
+INSERT INTO countries values ('St. Lucia','East Caribbean dollar',145);
+INSERT INTO countries values ('St. Vincent and the Grenadines','East Caribbean dollar',146);
+INSERT INTO countries values ('Samoa','Tala',147);
+INSERT INTO countries values ('San Marino','Euro',148);
+INSERT INTO countries values ('São Tomé and Príncipe','Dobra',149);
+INSERT INTO countries values ('Saudi Arabia','Riyal',150);
+INSERT INTO countries values ('Senegal','CFA Franc',151);
+INSERT INTO countries values ('Serbia Yugoslav',' new dinar',152);
+INSERT INTO countries values ('Seychelles','Seychelles rupee',153);
+INSERT INTO countries values ('Sierra Leone','Leone',154);
+INSERT INTO countries values ('Singapore','Singapore dollar',155);
+INSERT INTO countries values ('Slovakia','Koruna',156);
+INSERT INTO countries values ('Slovenia','Slovenian tolar',157);
+INSERT INTO countries values ('Solomon Islands','Solomon Islands dollar',158);
+INSERT INTO countries values ('Somalia','Somali shilling',159);
+INSERT INTO countries values ('South Africa','Rand',160);
+INSERT INTO countries values ('Spain','Euro',161);
+INSERT INTO countries values ('Sri Lanka','Sri Lanka rupee',162);
+INSERT INTO countries values ('Sudan','Dinar',163);
+INSERT INTO countries values ('Suriname','Surinamese dollar',164);
+INSERT INTO countries values ('Swaziland','Lilangeni',165);
+INSERT INTO countries values ('Sweden','Krona',166);
+INSERT INTO countries values ('Switzerland','Swiss franc',167);
+INSERT INTO countries values ('Syria','Syrian pound',168);
+INSERT INTO countries values ('Taiwan','Taiwan dollar',169);
+INSERT INTO countries values ('Tajikistan','somoni',170);
+INSERT INTO countries values ('Tanzania','Tanzanian shilling',171);
+INSERT INTO countries values ('Thailand','baht',172);
+INSERT INTO countries values ('Togo','CFA Franc',173);
+INSERT INTO countries values ('Tonga','Paanga',174);
+INSERT INTO countries values ('TrinidadTobago','TrinidadTobagodollar',175);
+INSERT INTO countries values ('Tunisia','Tunisian dinar',176);
+INSERT INTO countries values ('Turkey','Turkish lira',177);
+INSERT INTO countries values ('Turkmenistan','Manat',178);
+INSERT INTO countries values ('Tuvalu','Australian dollar',179);
+INSERT INTO countries values ('Uganda','Ugandan new shilling',180);
+INSERT INTO countries values ('Ukraine','Hryvna',181);
+INSERT INTO countries values ('United Arab Emirates','U.A.E. dirham',182);
+INSERT INTO countries values ('United Kingdom','Pound sterling',183);
+INSERT INTO countries values ('United States','dollar',184);
+INSERT INTO countries values ('Uruguay','Uruguay peso',185);
+INSERT INTO countries values ('Uzbekistan','Uzbekistani sum',186);
+INSERT INTO countries values ('Vanuatu','Vatu',187);
+INSERT INTO countries values ('Vatican City','Euro',188);
+INSERT INTO countries values ('Venezuela','Bolivar',189);
+INSERT INTO countries values ('Vietnam','Dong',190);
+INSERT INTO countries values ('Sahara','Tala',191);
+INSERT INTO countries values ('Yemen','Rial',192);
+INSERT INTO countries values ('Zambia','Kwacha',193);
+INSERT INTO countries values ('Zimbabwe','Zimbabwean dollar',194);
+
+drop table if exists states;
+CREATE TABLE states (countryname varchar(40) references countries(countryname), statename varchar(25), cuisine varchar(40), primary key (countryname,statename));
+INSERT INTO states VALUES ('Afghanistan','s1','cuisine1');
+INSERT INTO states VALUES ('Afghanistan','s2','cuisine2');
+INSERT INTO states VALUES ('Afghanistan','s3','cuisine3');
+INSERT INTO states VALUES ('Afghanistan','s4','cuisine4');
+INSERT INTO states VALUES ('Afghanistan','s5','cuisine5');
+INSERT INTO states VALUES ('Afghanistan','s6','cuisine6');
+INSERT INTO states VALUES ('Afghanistan','s7','cuisine7');
+INSERT INTO states VALUES ('Afghanistan','s8','cuisine8');
+INSERT INTO states VALUES ('Afghanistan','s9','cuisine9');
+INSERT INTO states VALUES ('Afghanistan','s10','cuisine10');
+INSERT INTO states VALUES ('Afghanistan','s11','cuisine11');
+INSERT INTO states VALUES ('Afghanistan','s12','cuisine12');
+INSERT INTO states VALUES ('Afghanistan','s13','cuisine13');
+INSERT INTO states VALUES ('Afghanistan','s14','cuisine14');
+INSERT INTO states VALUES ('Afghanistan','s15','cuisine15');
+INSERT INTO states VALUES ('Afghanistan','s16','cuisine16');
+INSERT INTO states VALUES ('Afghanistan','s17','cuisine17');
+INSERT INTO states VALUES ('Afghanistan','s18','cuisine18');
+INSERT INTO states VALUES ('Afghanistan','s19','cuisine19');
+INSERT INTO states VALUES ('Afghanistan','s20','cuisine20');
+INSERT INTO states VALUES ('Afghanistan','s21','cuisine21');
+INSERT INTO states VALUES ('Afghanistan','s22','cuisine22');
+INSERT INTO states VALUES ('Afghanistan','s23','cuisine23');
+
+drop table if exists cities;
+CREATE TABLE cities (cityid serial primary key, countryname varchar(40) references countries(countryname), statename varchar(25), cityname varchar(25) NOT NULL, pincode bigint NOT NULL, stdcode bigint NOT NULL);
+
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89384',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89385',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89386',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89387',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89388',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s1','city89389',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92778',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92779',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92780',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92781',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92782',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92783',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92784',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92785',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92786',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92787',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92788',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92789',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92790',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92791',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s2','city92792',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47794',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47795',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47796',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47797',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47798',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47799',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47800',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47801',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47802',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47803',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47804',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47805',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47806',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47807',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s3','city47808',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85387',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85388',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85389',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85390',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85391',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85392',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85393',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85394',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85395',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85396',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85397',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85398',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85399',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85400',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85401',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85402',1000015,10015);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s4','city85403',1000016,10016);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16650',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16651',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16652',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16653',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16654',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s5','city16655',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2363',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2364',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2365',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2366',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2367',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2368',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2369',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2370',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2371',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2372',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2373',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s6','city2374',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68691',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68692',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68693',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68694',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68695',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68696',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68697',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68698',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s7','city68699',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97764',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97765',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97766',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97767',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97768',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s8','city97769',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80541',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80542',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80543',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80544',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80545',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80546',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80547',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80548',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80549',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80550',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s9','city80551',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89173',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89174',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89175',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89176',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89177',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s10','city89178',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5212',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5213',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5214',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5215',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5216',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5217',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5218',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5219',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5220',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5221',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5222',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5223',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s11','city5224',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2568',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2569',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2570',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2571',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2572',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2573',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2574',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2575',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2576',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2577',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2578',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2579',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2580',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s12','city2581',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65783',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65784',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65785',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65786',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65787',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65788',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65789',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65790',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65791',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s13','city65792',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22863',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22864',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22865',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22866',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22867',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22868',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22869',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22870',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22871',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22872',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22873',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22874',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22875',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22876',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22877',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22878',1000015,10015);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22879',1000016,10016);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s14','city22880',1000017,10017);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74068',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74069',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74070',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74071',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74072',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74073',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74074',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74075',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74076',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74077',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74078',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74079',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74080',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74081',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s15','city74082',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13930',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13931',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13932',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13933',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13934',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13935',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13936',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13937',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13938',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13939',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13940',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13941',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13942',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13943',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13944',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13945',1000015,10015);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s16','city13946',1000016,10016);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34023',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34024',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34025',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34026',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34027',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34028',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34029',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s17','city34030',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33070',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33071',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33072',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33073',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33074',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33075',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33076',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33077',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33078',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33079',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33080',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33081',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33082',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33083',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33084',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33085',1000015,10015);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s18','city33086',1000016,10016);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61394',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61395',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61396',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61397',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61398',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s19','city61399',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75012',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75013',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75014',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75015',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75016',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75017',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75018',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75019',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75020',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75021',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75022',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s20','city75023',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76230',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76231',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76232',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76233',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76234',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76235',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76236',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s21','city76237',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84422',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84423',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84424',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84425',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84426',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84427',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84428',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84429',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84430',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84431',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84432',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84433',1000011,10011);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84434',1000012,10012);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84435',1000013,10013);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84436',1000014,10014);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84437',1000015,10015);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84438',1000016,10016);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84439',1000017,10017);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s22','city84440',1000018,10018);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13785',1000000,10000);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13786',1000001,10001);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13787',1000002,10002);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13788',1000003,10003);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13789',1000004,10004);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13790',1000005,10005);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13791',1000006,10006);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13792',1000007,10007);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13793',1000008,10008);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13794',1000009,10009);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13795',1000010,10010);
+INSERT INTO cities(countryname,statename,cityname,pincode,stdcode) VALUES ('Afghanistan','s23','city13796',1000011,10011);
+
+drop table if exists touristspottype;
+create table touristspottype (typeid integer primary key, type varchar[] NOT NULL);
+insert into touristspottype values(1, ARRAY['Historical']);
+insert into touristspottype values(2, ARRAY['Adventerous']);
+insert into touristspottype values(3, ARRAY['Religious']);
+insert into touristspottype values(4, ARRAY['Scenic']);
+insert into touristspottype values(5, ARRAY['Historical','Adventerous']);
+insert into touristspottype values(6, ARRAY['Historical','Religious']);
+insert into touristspottype values(7, ARRAY['Historical','Scenic']);
+insert into touristspottype values(8, ARRAY['Adventerous','Religious']);
+insert into touristspottype values(9, ARRAY['Adventerous','Scenic']);
+insert into touristspottype values(10, ARRAY['Religious','Scenic']);
+insert into touristspottype values(11, ARRAY['Adventerous','Religious','Scenic']);
+insert into touristspottype values(12, ARRAY['Historical','Religious','Scenic']);
+insert into touristspottype values(13, ARRAY['Historical','Adventerous','Scenic']);
+insert into touristspottype values(14, ARRAY['Historical','Adventerous','Religious']);
+insert into touristspottype values(15, ARRAY['Historical','Adventerous','Religious','Scenic']);
+insert into touristspottype values(16, ARRAY['Other']);
+
+
+
+CREATE TABLE touristspots(cityid bigint references cities(cityid),spotname varchar(100),rating real DEFAULT 0,description varchar(5000) DEFAULT 'Hey finally you searched me. I am the best place to visit in the world you live.',typeid integer references touristspottype(typeid));
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (1,'spot30887',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (2,'spot47794',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (3,'spot10493',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (4,'spot2363',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (5,'spot20060',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (5,'spot20061',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (7,'spot5737',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (8,'spot2568',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (8,'spot2569',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (9,'spot22863',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (9,'spot22864',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (10,'spot13930',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (12,'spot48168',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (12,'spot48169',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (13,'spot28043',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (15,'spot13785',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (15,'spot13786',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (16,'spot48316',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (16,'spot48317',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (17,'spot26092',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (18,'spot41874',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (18,'spot41875',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (19,'spot47282',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (22,'spot847',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (22,'spot848',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (23,'spot16125',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (23,'spot16126',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (26,'spot44044',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (26,'spot44045',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (28,'spot45789',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (28,'spot45790',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (29,'spot42755',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (29,'spot42756',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (32,'spot36227',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (35,'spot10379',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (35,'spot10380',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (36,'spot12903',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (36,'spot12904',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (37,'spot10757',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (38,'spot24287',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (38,'spot24288',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (39,'spot28445',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (39,'spot28446',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (41,'spot38098',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (45,'spot22354',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (45,'spot22355',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (46,'spot14684',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (47,'spot1529',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (47,'spot1530',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (48,'spot9504',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (48,'spot9505',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (50,'spot26341',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (50,'spot26342',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (51,'spot42619',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (51,'spot42620',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (53,'spot42380',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (53,'spot42381',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (54,'spot19842',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (54,'spot19843',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (55,'spot7035',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (57,'spot25857',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (57,'spot25858',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (58,'spot48366',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (58,'spot48367',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (59,'spot2552',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (60,'spot3276',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (62,'spot44396',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (62,'spot44397',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (64,'spot44429',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (64,'spot44430',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (66,'spot22405',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (66,'spot22406',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (67,'spot4539',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (67,'spot4540',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (68,'spot44819',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (73,'spot48491',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (73,'spot48492',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (74,'spot35645',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (74,'spot35646',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (75,'spot2955',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (75,'spot2956',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (76,'spot8543',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (76,'spot8544',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (78,'spot26349',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (79,'spot27829',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (79,'spot27830',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (80,'spot35569',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (81,'spot23312',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (83,'spot23731',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (84,'spot29321',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (84,'spot29322',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (86,'spot36709',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (86,'spot36710',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (87,'spot12925',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (87,'spot12926',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (88,'spot12601',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (88,'spot12602',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (89,'spot19380',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (89,'spot19381',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (90,'spot974',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (90,'spot975',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (91,'spot8934',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (92,'spot20164',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (93,'spot48900',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (93,'spot48901',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (96,'spot2927',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (97,'spot11341',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (97,'spot11342',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (101,'spot18419',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (102,'spot3349',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (102,'spot3350',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (104,'spot16343',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (104,'spot16344',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (107,'spot14820',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (109,'spot39812',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (110,'spot11706',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (110,'spot11707',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (111,'spot15985',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (111,'spot15986',1);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (112,'spot2423',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (113,'spot4082',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (113,'spot4083',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (114,'spot11973',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (115,'spot47626',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (115,'spot47627',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (116,'spot6641',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (117,'spot40714',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (117,'spot40715',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (119,'spot8582',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (119,'spot8583',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (121,'spot18005',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (121,'spot18006',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (124,'spot48143',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (125,'spot21994',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (126,'spot29568',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (126,'spot29569',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (127,'spot12755',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (129,'spot13203',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (130,'spot2022',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (130,'spot2023',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (132,'spot49909',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (135,'spot33304',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (135,'spot33305',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (136,'spot22891',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (136,'spot22892',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (140,'spot16250',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (140,'spot16251',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (141,'spot5364',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (142,'spot44893',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (142,'spot44894',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (143,'spot13997',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (143,'spot13998',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (145,'spot32461',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (147,'spot10029',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (147,'spot10030',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (148,'spot7557',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (148,'spot7558',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (150,'spot1040',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (152,'spot682',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (152,'spot683',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (153,'spot45152',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (154,'spot4340',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (154,'spot4341',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (156,'spot10050',5);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (156,'spot10051',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (157,'spot45344',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (159,'spot7972',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (161,'spot42293',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (162,'spot3145',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (162,'spot3146',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (165,'spot24233',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (165,'spot24234',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (170,'spot6368',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (170,'spot6369',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (172,'spot26058',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (173,'spot28206',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (173,'spot28207',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (174,'spot15101',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (176,'spot6553',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (177,'spot28947',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (178,'spot6971',12);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (178,'spot6972',9);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (179,'spot18594',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (179,'spot18595',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (180,'spot11887',15);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (180,'spot11888',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (181,'spot20091',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (181,'spot20092',8);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (182,'spot8970',14);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (182,'spot8971',3);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (183,'spot47642',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (183,'spot47643',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (185,'spot24567',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (186,'spot6857',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (188,'spot238',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (189,'spot35218',7);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (190,'spot40784',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (190,'spot40785',11);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (191,'spot17638',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (191,'spot17639',4);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (192,'spot20479',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (193,'spot34472',2);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (195,'spot39439',10);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (195,'spot39440',13);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (197,'spot33682',6);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (199,'spot33418',16);
+INSERT INTO touristspots(cityid,spotname,typeid) VALUES (200,'spot18364',15);
+
+drop table if exists hotel;
+
+CREATE TABLE hotel(cityid integer references cities(cityid), hotelname varchar(50) not null, address varchar(200) not null, phone varchar(20) primary key, hits integer);
+
+
+Insert into hotel values (1,'hotel1','14th Street, city89384, s1, Afghanistan','1');
+Insert into hotel values (2,'hotel2','1th Street, city89384, s1, Afghanistan','2');
+Insert into hotel values (3,'hotel3','7th Street, city89385, s1, Afghanistan','3');
+Insert into hotel values (4,'hotel4','2th Street, city89385, s1, Afghanistan','4');
+Insert into hotel values (5,'hotel5','26th Street, city89386, s1, Afghanistan','5');
+Insert into hotel values (6,'hotel6','22th Street, city89386, s1, Afghanistan','6');
+Insert into hotel values (7,'hotel7','28th Street, city89387, s1, Afghanistan','7');
+Insert into hotel values (8,'hotel8','17th Street, city89387, s1, Afghanistan','8');
+Insert into hotel values (9,'hotel9','26th Street, city89388, s1, Afghanistan','9');
+Insert into hotel values (10,'hotel10','26th Street, city89388, s1, Afghanistan','10');
+Insert into hotel values (11,'hotel11','24th Street, city89389, s1, Afghanistan','11');
+Insert into hotel values (12,'hotel12','21th Street, city89389, s1, Afghanistan','12');
+Insert into hotel values (13,'hotel13','1th Street, city92778, s2, Afghanistan','13');
+Insert into hotel values (14,'hotel14','14th Street, city92778, s2, Afghanistan','14');
+Insert into hotel values (15,'hotel15','24th Street, city92779, s2, Afghanistan','15');
+Insert into hotel values (16,'hotel16','25th Street, city92779, s2, Afghanistan','16');
+Insert into hotel values (17,'hotel17','26th Street, city92780, s2, Afghanistan','17');
+Insert into hotel values (18,'hotel18','29th Street, city92780, s2, Afghanistan','18');
+Insert into hotel values (19,'hotel19','30th Street, city92781, s2, Afghanistan','19');
+Insert into hotel values (20,'hotel20','2th Street, city92781, s2, Afghanistan','20');
+Insert into hotel values (21,'hotel21','27th Street, city92782, s2, Afghanistan','21');
+Insert into hotel values (22,'hotel22','1th Street, city92782, s2, Afghanistan','22');
+Insert into hotel values (23,'hotel23','3th Street, city92783, s2, Afghanistan','23');
+Insert into hotel values (24,'hotel24','4th Street, city92783, s2, Afghanistan','24');
+Insert into hotel values (25,'hotel25','12th Street, city92784, s2, Afghanistan','25');
+Insert into hotel values (26,'hotel26','8th Street, city92784, s2, Afghanistan','26');
+Insert into hotel values (27,'hotel27','28th Street, city92785, s2, Afghanistan','27');
+Insert into hotel values (28,'hotel28','12th Street, city92785, s2, Afghanistan','28');
+Insert into hotel values (29,'hotel29','26th Street, city92786, s2, Afghanistan','29');
+Insert into hotel values (30,'hotel30','14th Street, city92786, s2, Afghanistan','30');
+Insert into hotel values (31,'hotel31','27th Street, city92787, s2, Afghanistan','31');
+Insert into hotel values (32,'hotel32','9th Street, city92787, s2, Afghanistan','32');
+Insert into hotel values (33,'hotel33','14th Street, city92788, s2, Afghanistan','33');
+Insert into hotel values (34,'hotel34','9th Street, city92788, s2, Afghanistan','34');
+Insert into hotel values (35,'hotel35','15th Street, city92789, s2, Afghanistan','35');
+Insert into hotel values (36,'hotel36','17th Street, city92789, s2, Afghanistan','36');
+Insert into hotel values (37,'hotel37','20th Street, city92790, s2, Afghanistan','37');
+Insert into hotel values (38,'hotel38','21th Street, city92790, s2, Afghanistan','38');
+Insert into hotel values (39,'hotel39','17th Street, city92791, s2, Afghanistan','39');
+Insert into hotel values (40,'hotel40','27th Street, city92791, s2, Afghanistan','40');
+Insert into hotel values (41,'hotel41','16th Street, city92792, s2, Afghanistan','41');
+Insert into hotel values (42,'hotel42','7th Street, city92792, s2, Afghanistan','42');
+Insert into hotel values (43,'hotel43','3th Street, city47794, s3, Afghanistan','43');
+Insert into hotel values (44,'hotel44','30th Street, city47794, s3, Afghanistan','44');
+Insert into hotel values (45,'hotel45','11th Street, city47795, s3, Afghanistan','45');
+Insert into hotel values (46,'hotel46','10th Street, city47795, s3, Afghanistan','46');
+Insert into hotel values (47,'hotel47','1th Street, city47796, s3, Afghanistan','47');
+Insert into hotel values (48,'hotel48','28th Street, city47796, s3, Afghanistan','48');
+Insert into hotel values (49,'hotel49','23th Street, city47797, s3, Afghanistan','49');
+Insert into hotel values (50,'hotel50','23th Street, city47797, s3, Afghanistan','50');
+Insert into hotel values (51,'hotel51','24th Street, city47798, s3, Afghanistan','51');
+Insert into hotel values (52,'hotel52','19th Street, city47798, s3, Afghanistan','52');
+Insert into hotel values (53,'hotel53','29th Street, city47799, s3, Afghanistan','53');
+Insert into hotel values (54,'hotel54','21th Street, city47799, s3, Afghanistan','54');
+Insert into hotel values (55,'hotel55','9th Street, city47800, s3, Afghanistan','55');
+Insert into hotel values (56,'hotel56','10th Street, city47800, s3, Afghanistan','56');
+Insert into hotel values (57,'hotel57','29th Street, city47801, s3, Afghanistan','57');
+Insert into hotel values (58,'hotel58','28th Street, city47801, s3, Afghanistan','58');
+Insert into hotel values (59,'hotel59','6th Street, city47802, s3, Afghanistan','59');
+Insert into hotel values (60,'hotel60','26th Street, city47802, s3, Afghanistan','60');
+Insert into hotel values (61,'hotel61','17th Street, city47803, s3, Afghanistan','61');
+Insert into hotel values (62,'hotel62','15th Street, city47803, s3, Afghanistan','62');
+Insert into hotel values (63,'hotel63','16th Street, city47804, s3, Afghanistan','63');
+Insert into hotel values (64,'hotel64','17th Street, city47804, s3, Afghanistan','64');
+Insert into hotel values (65,'hotel65','24th Street, city47805, s3, Afghanistan','65');
+Insert into hotel values (66,'hotel66','6th Street, city47805, s3, Afghanistan','66');
+Insert into hotel values (67,'hotel67','30th Street, city47806, s3, Afghanistan','67');
+Insert into hotel values (68,'hotel68','19th Street, city47806, s3, Afghanistan','68');
+Insert into hotel values (69,'hotel69','30th Street, city47807, s3, Afghanistan','69');
+Insert into hotel values (70,'hotel70','3th Street, city47807, s3, Afghanistan','70');
+Insert into hotel values (71,'hotel71','19th Street, city47808, s3, Afghanistan','71');
+Insert into hotel values (72,'hotel72','27th Street, city47808, s3, Afghanistan','72');
+Insert into hotel values (73,'hotel73','3th Street, city85387, s4, Afghanistan','73');
+Insert into hotel values (74,'hotel74','5th Street, city85387, s4, Afghanistan','74');
+Insert into hotel values (75,'hotel75','8th Street, city85388, s4, Afghanistan','75');
+Insert into hotel values (76,'hotel76','14th Street, city85388, s4, Afghanistan','76');
+Insert into hotel values (77,'hotel77','21th Street, city85389, s4, Afghanistan','77');
+Insert into hotel values (78,'hotel78','25th Street, city85389, s4, Afghanistan','78');
+Insert into hotel values (79,'hotel79','20th Street, city85390, s4, Afghanistan','79');
+Insert into hotel values (80,'hotel80','16th Street, city85390, s4, Afghanistan','80');
+Insert into hotel values (81,'hotel81','25th Street, city85391, s4, Afghanistan','81');
+Insert into hotel values (82,'hotel82','26th Street, city85391, s4, Afghanistan','82');
+Insert into hotel values (83,'hotel83','8th Street, city85392, s4, Afghanistan','83');
+Insert into hotel values (84,'hotel84','8th Street, city85392, s4, Afghanistan','84');
+Insert into hotel values (85,'hotel85','12th Street, city85393, s4, Afghanistan','85');
+Insert into hotel values (86,'hotel86','13th Street, city85393, s4, Afghanistan','86');
+Insert into hotel values (87,'hotel87','10th Street, city85394, s4, Afghanistan','87');
+Insert into hotel values (88,'hotel88','8th Street, city85394, s4, Afghanistan','88');
+Insert into hotel values (89,'hotel89','10th Street, city85395, s4, Afghanistan','89');
+Insert into hotel values (90,'hotel90','22th Street, city85395, s4, Afghanistan','90');
+Insert into hotel values (91,'hotel91','26th Street, city85396, s4, Afghanistan','91');
+Insert into hotel values (92,'hotel92','24th Street, city85396, s4, Afghanistan','92');
+Insert into hotel values (93,'hotel93','9th Street, city85397, s4, Afghanistan','93');
+Insert into hotel values (94,'hotel94','8th Street, city85397, s4, Afghanistan','94');
+Insert into hotel values (95,'hotel95','1th Street, city85398, s4, Afghanistan','95');
+Insert into hotel values (96,'hotel96','2th Street, city85398, s4, Afghanistan','96');
+Insert into hotel values (97,'hotel97','15th Street, city85399, s4, Afghanistan','97');
+Insert into hotel values (98,'hotel98','2th Street, city85399, s4, Afghanistan','98');
+Insert into hotel values (99,'hotel99','13th Street, city85400, s4, Afghanistan','99');
+Insert into hotel values (100,'hotel100','21th Street, city85400, s4, Afghanistan','100');
+
+CREATE TABLE history (username varchar(25) references customer(username), planid integer references plan(planid), dateoftravel date, placeid integer unique not null, primary key (username, planid, dateoftravel));
+
+CREATE TABLE schedule (username varchar(25) references customer(username), timeofevent timestamp not null, event varchar(100) not null, primary key (username, timeofevent));
+
+CREATE TABLE spotrating (username varchar(25) references customer(username), cityid integer references cities(cityid), spotname varchar(100) not null, srating integer default 0 );
+
+CREATE TABLE hotelrating (username varchar(25) references customer(username), cityid integer references cities(cityid), hotelname varchar(100) not null, hrating integer default 0);
+
+CREATE TABLE tovisit (username varchar(25) references customer(username), planid integer references plan(planid), cityid integer references cities(cityid), spotname varchar(100) not null, dateoftravel date not null); 
+
+CREATE TABLE friends (planid integer references plan(planid), friend varchar(25) references customer(username));
+
+CREATE TABLE notification(planid integer references plan(planid), sender varchar(25) references customer(username), reciever varchar(25) references customer(username), seen boolean default 'f'); 
+
+drop table if exists plan;
+create table plan (planid serial primary key, planname varchar(50) NOT NULL);
+insert into plan(planname) values('plan1');
+insert into plan(planname) values('plan2');
+insert into plan(planname) values('plan3');
+insert into plan(planname) values('plan4');
+insert into plan(planname) values('plan5');
+insert into plan(planname) values('plan6');
+insert into plan(planname) values('plan7');
+insert into plan(planname) values('plan8');
+insert into plan(planname) values('plan9');
+insert into plan(planname) values('plan10');
+
+create table wishList(username varchar(25) references customer(username), cityid integer references cities(cityid), spotname varchar(100));
+
+**The scripts above are not complete. We have a large data base and the file size went to >22 MB when we included all the scripts which is not allowed on moodle. So, this file contains some scripts for all the tables.
+*******************************************************END OF SQL SCRIPTS*************************************************************
+
+
+PART - b (Queries)
+
+This is for the description and rating of the spot on which the user has cilcked:
+
+select description,rating from touristspots where cityid = ‘city-name’ and spotname =  
+‘spot-name’;
+
+
+
+This query is used to provide information about a hotel in particular city :
+
+select * from hotel where cityid = ‘city-id’ and hotelname = ‘hotel-name’;
+
+
+
+This Query is for providing information about the user :
+
+select * from customer where username = ‘user-name’;
+
+
+
+These set of queries are for the Current Plans . Where we provide information about the currently selected plan :
+
+R1 = select * from tovisit where username = ‘user’ and planname = ‘plan’;
+select c.name from customer as c,friend as f where f.planid IN (R1) and c.username 
+= f.friend;
+
+
+
+This Query provides information about history of the user:
+
+select placeid from history where username = ‘user’ and dateoftravel = ‘date’ ;
+
+
+
+These set of queries are for creating a new plan:
+
+insert into plan (planname) values (‘name of plan’);
+planid = select max(planid) from plan where planname = ’name of plan’ order by 
+planid;
+cityid = select cityid from cities where countryname = ‘country’ and statename = 
+’statename’ and cityname = ‘cityname’;  
+insert into tovisit values (‘username’, planid, cityid, ’spotname’, ‘dateoftravel’);
+ 
+
+
+These set of queries are for adding to the wish list :
+
+select cityid, cityname, statename, countryname from cities where cityid in (select 
+cityid from touristspots where spotname = ‘spot’;);
+cityid = select cityid from cities where cityname = city and statename = state and 
+countryname = country;
+insert into wishlist values (user, cityid, spot);
+
+
+Query for searching a Spot:
+
+By Spotname --
+select * from touristspots where spotname = ‘spot’;
+
+By Country --
+select statename from states where countryname = ‘country’;
+
+By State --
+select cityname from cities where countryname = ‘country’ and statename = ‘state’;
+
+By City --
+R1 = select cityid from cities where countryname = ‘country’ and statename = ‘state’ 
+and cityname = ‘city’;
+select spotname from touristspots where cityid = R1 ;
+
+Query executed at time of login Login:
+select password from customer where username = ‘user’;
+ 
+
+Queries for Editing Profile:
+
+update customer set name = ‘newname’ where username = ‘user’;
+update customer set password = ‘newpass’ where username = ‘user’;
+update customer set  emailid = ‘newname’ where username = ‘user’;
+update customer set  address = ‘newaddress’ where username = ‘user’;
+
+Query for Sign Up:
+insert into customer values (user, pass, name, address, emailid);

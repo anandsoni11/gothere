@@ -1,0 +1,8 @@
+1) City -> on inserting a city we should assert that there should not exist any other city in the same country with same pincode or same stdcode.
+
+2) City -> on inserting a city we should assert that state should lie in that country and that state should not have any other city with the same name.
+
+ done 3) In tourist spot table, rating should be from 0-10 and typeID between 1-16. 
+
+done 4) In spot rating, the spot name should be in the city corresponding to the cityid.
+

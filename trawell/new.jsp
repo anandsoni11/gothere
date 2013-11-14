@@ -9,7 +9,8 @@
     <meta name="description" content="Trawell | Fly the adventurous skies!">
     <meta name="Anand Soni" content="Trawell">
     <title>Trawell Inc. | Explore those adventurous skies! </title>
-	
+  <script type="text/javascript" src="./js/jquery-2.0.3.js"></script>
+  <script type="text/javascript" src="./js/dropdown.js"></script>	
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
@@ -21,7 +22,8 @@
   <body>
 
     <header>
-      
+  
+
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -40,7 +42,6 @@
               <li><a href="plan.jsp">Plan</a></li>
               <li><a href="history.jsp">History</a></li>
               <li><a href="wishlist.jsp">Wishlist</a></li>
-              <!--<li><a href="dropdown.jsp">Dropdown</a></li>-->
               </ul>        
               <ul class="nav pull-right">
                 <li class="dropdown">
@@ -55,6 +56,7 @@
                 <li><a href="signup.jsp">Sign Up</a></li>
                 <li><a href="login.jsp">Sign In</a></li>
               </ul>
+
             </div>
           </div>
         </div>
@@ -63,12 +65,15 @@
     <br>     
     </header>
 
+
+
     <div class="content">
+  
       <div class="container">
         <div class="page-header">
+    
           <%
-          String myname =  (String)session.getAttribute("username");
-        
+          String myname = (String) session.getAttribute("username"); 
           if(myname!=null)
           {
             out.println("Welcome  "+myname+", <a href=\"logout.jsp\" >Logout</a>");
@@ -77,38 +82,38 @@
             out.println("<br>");
           }
           %>
+          
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
-
-          <h4>Search your dream spot here :</h4>
-          <form action="searchresults_loggedin.jsp" class="form-horizontal form-signin-signup">
-            <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
-            <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
-          </form>
-          <h4>Search your destination by Country here!</h4>
-        </div>
-        
-        
-        
-        <%
-        team_trawell.trawell l = new team_trawell.trawell();
-        l.createConnection();  
-        String c= l.getCountries();
-        StringTokenizer st = new StringTokenizer(c, ",");
-        while (st.hasMoreElements()) {
-          String s = (String)st.nextElement();
-          //session.setAttribute("country",s);
-          s="<a href=\"countryresults_loggedin.jsp?name=" + s + "  \"> "  +s+"</a>";
-          out.println(s);
-          out.println("<br>");
-        }
-
+          <%
+         String user = (String) session.getAttribute("username");
+         String cou = request.getParameter("d1");
+         String sta = request.getParameter("d2");
+         String cit = request.getParameter("d3");
+         team_trawell.trawell l = new team_trawell.trawell();
+          
+        l.createConnection(); 
+        System.out.println(cou+ " "+sta+" "+cit+"ajdfhsdfhkjdsfhjkdshfsdfkhsdkjfhjksdhfkjdshfkjdsjkfhsdkjfkdf"); 
+        //String countries=l.getCountries();
         %>
+        <h2>Your Profile Information</h2>
+        
+                
+        </div>
       </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <footer>
+
+      <footer>
       <hr class="footer-divider">
       <div class="container">
         <p>
@@ -121,5 +126,6 @@
     <script type="text/javascript" src="./js/boot-business.js"></script>
   </body>
 </html>
+ 
 
-      
+

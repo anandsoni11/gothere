@@ -502,6 +502,134 @@ public class trawell {
 	 	return c;	 	
 	 }
 
+	 public String getHotelAddress(int cityid) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select address from hotel where cityid=?");
+	 		p.setInt(1,cityid);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 		}
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;	
+	 }
+
+	 public String getHotelPhone(int cityid) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select phone from hotel where cityid=?");
+	 		p.setInt(1,cityid);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 		}
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;	
+	 }
+
+	 public int getHotelRating(int cityid) {
+	 	int c=0;
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select hrating from hotel where cityid=?");
+	 		p.setInt(1,cityid);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getInt(1);
+	 		}
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;	
+	 }
+
+	 public String addCustomerHotelRating(String username, int cityid, String hotelname, int rating) {
+	 	String result="rating done!";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select * from hotelrating where username=? and cityid=? and hotelname=?");
+	 		PreparedStatement p1=conn.prepareStatement("insert into hotelrating values(?,?,?,?)");
+	 		p.setString(1,username);
+	 		p.setInt(2,cityid);
+	 		p.setString(3,hotelname);
+	 		ResultSet rs=p.executeQuery();
+	 		if(!rs.next()) {
+				p1.setString(1, username);
+				p1.setInt(2, cityid);
+				p1.setString(3, hotelname);
+				p1.setInt(4, rating);
+				p1.executeUpdate();
+			}
+			else {
+				PreparedStatement p2=conn.prepareStatement("update hotelrating set hrating=? where username=? and cityid=? and hotelname=?");
+				p2.setInt(1,rating);
+				p2.setString(2,username);
+				p1.setInt(3, cityid);
+				p1.setString(4, hotelname);
+				p2.addBatch();
+				p2.executeUpdate();
+			}
+			} catch (SQLException sqle) {
+				result="Unable to rate!";
+				System.out.println(sqle);
+				return result;
+				//System.exit(1);
+			}
+			return result;
+				
+	 }
+
+	 public int getUpdatedHotelRating(int cityid, String hotelname) {
+	 	int r=0,count=0;
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select hrating from hotelrating where cityid=? and hotelname=?");
+	 		p.setInt(1,cityid);
+	 		p.setString(2,hotelname);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			int i = Integer.parseInt(c);
+	 			r+=i;
+	 			count++;
+	 		}
+	 		r=r/count;
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return r;		
+	 }	
+	 
+
+	 public void updateHotelRating(int cityid, String hotelname, int rating) {
+	 	try {
+	 		PreparedStatement p1=conn.prepareStatement("update hotel set hrating=? where cityid=? and hotelname=?");
+			p1.setInt(1, rating);
+			p1.setInt(2, cityid);
+			p1.setString(3, hotelname);
+			p1.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println(sqle);
+				
+				//System.exit(1);
+			}
+	 }
+
 	 /*
 	  Debugging function!	
 	 */

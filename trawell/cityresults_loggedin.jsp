@@ -93,15 +93,30 @@
           team_trawell.trawell l = new team_trawell.trawell();
           l.createConnection();
           String c= l.searchSpotsforaCity(ids);
+          String hotel = l.getHotelforaCity(ids);
           StringTokenizer st = new StringTokenizer(c, ",");
           while (st.hasMoreElements()) {
            String s = (String)st.nextElement();
            //session.setAttribute("spot",s);
-           s="<a href=\"spotresults_loggedin.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +s+"</a>";
+           s="<a href=\"spotresults_loggedin.jsp?name=" + s +"&city="+city+"&state="+state+"&country="+country+"&id="+id+"&hotel="+hotel+   "\"> "  +s+"</a>";
            out.println(s);
            out.println("<br>");
-          }  
+           out.println("<br>");
+          }
+          //String h="<a href=\"spotresuts_loggedin.jsp?hotelname="+hotel+"&city="+city+"&state="+state+"&country="+country+"&id="+id+ "  \"> "  +hotel+"</a>";
+          //out.println("<h4>Looking for a shelter? Food?</h4>");
+          //out.println(h);
           %>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+
         </div>
       </div>
     </div>

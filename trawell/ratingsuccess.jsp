@@ -94,12 +94,26 @@
             
           int ids = Integer.parseInt(id);
           //l.checkParam(request.getParameter("ratedrop"),id);
-          String r = request.getParameter("ratedrop");
-          int rating = l.getRatingValueinInt(r);
+          String button1 = request.getParameter("rate");
+          String button2 = request.getParameter("rateh");
+          
+          if(button1!=null) {
+            String r = request.getParameter("ratedrop");
+            int rating = l.getRatingValueinInt(r);
+            l.addCustomerSpotRating(myname, ids, spot, rating);
+            int updatedrating = l.getUpdatedSpotRating(ids, spot);
+            l.updateSpotRating(ids, spot, updatedrating);
+          }
 
-          l.addCustomerSpotRating(myname, ids, spot, rating);
-          int updatedrating = l.getUpdatedSpotRating(ids, spot);
-          l.updateSpotRating(ids, spot, updatedrating);
+          else if(button2!=null) {
+            String hotn = (String)session.getAttribute("hotname");
+            String r1 = request.getParameter("ratedrop1");
+            int ratingh = l.getRatingValueinInt(r1);
+            l.addCustomerHotelRating(myname, ids, hotn, ratingh);
+            int updatedrating = l.getUpdatedHotelRating(ids, hotn);
+            l.updateHotelRating(ids, hotn, updatedrating);
+          }  
+          
             
           %>
           <br>

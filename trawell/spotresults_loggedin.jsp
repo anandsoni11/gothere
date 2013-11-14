@@ -99,22 +99,26 @@
           team_trawell.trawell l = new team_trawell.trawell();
           l.createConnection();
           out.println("<h4>Exlpore this magical place through these words and your imagination!</h4> ");
-            
+          String tag1="<h4>";
+          String tag2="</h4>";
+          String s="";  
           String c= l.getSpotDescription(spot,ids);
           StringTokenizer st = new StringTokenizer(c, ":");
           while (st.hasMoreElements()) {
-            String s = (String)st.nextElement();
+            s = (String)st.nextElement();
             //session.setAttribute("country",s);
             //s="<a href=\"countryresults.jsp?name=" + s + "  \"> "  +s+"</a>";
-            String tag1 ="<h4>";
-            String tag2 ="</h4>";
-            
-            tag1+=s;
-            tag1+=tag2;
-            out.println(tag1);
+            //tag1 ="<h4>";
+            String tag ="";
+            tag+=tag1;
+            tag+=s;
+            tag+=tag2;
+            out.println(tag);
             out.println("<br>");
             out.println("<h5>Overall rating for this spot :</h5>");
             }
+            //out.println("<h5>Overall rating for this spot :</h5>");
+            //out.println("<h5>"+s+"</h5>");
                               
           %>
           
@@ -138,6 +142,48 @@
         
           <br>
           <br>
+          <h4> Residence and Food Soultions! </h4>
+          <%
+          String hotel = request.getParameter("hotel");
+          String address = l.getHotelAddress(ids);
+          String phone = l.getHotelPhone(ids);
+          session.setAttribute("hotname",hotel);
+          int rah = l.getHotelRating(ids);
+          %>
+          <table class="table">
+          <thead>
+            <td>Hotel Name</td>
+            <td>Address</td>
+            <td>Phone</td>
+            <td>Rating</td>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%=hotel%></td>
+            <td><%=address%></td>
+            <td><%=phone%></td>
+            <td><%=rah%></td>
+          </tr>
+        </tbody>
+        </table>
+        <br>
+        <h5>Rate Now!</h5>
+          <form action="ratingsuccess.jsp" class="form-horizontal form-signin-signup">
+          <select class="form-control" name="ratedrop1">
+            <option value="one">1</option>
+            <option value="two">2</option>
+            <option value="three">3</option>
+           <option value="four">4</option>
+            <option value="five">5</option>
+            <option value="six">6</option>
+            <option value="seven">7</option>
+            <option value="eight">8</option>
+           <option value="nine">9</option>
+            <option value="ten">10</option>
+          </select>
+          
+            <input type="submit" name="rateh" value="Rate Now" class="btn btn-primary btn-large">
+          </form>
           <br>
           <br>
           <br>

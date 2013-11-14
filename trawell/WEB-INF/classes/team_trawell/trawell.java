@@ -71,7 +71,7 @@ public class trawell {
 	 public String addCustomer(String name, String addr, String email, String user, String pass) {
 	 	String result="";
 	 	try {
-	 		PreparedStatement p1=conn.prepareStatement("insert into customer_dummy values(?,?,?,?,?)");
+	 		PreparedStatement p1=conn.prepareStatement("insert into customer values(?,?,?,?,?)");
 			p1.setString(1, name);
 			p1.setString(2, addr);
 			p1.setString(3, email);
@@ -92,7 +92,7 @@ public class trawell {
 	 public String loginVerification(String u, String p) {
 	 	String result="";
 	 	try {
-	 		PreparedStatement p1=conn.prepareStatement("select password from customer_dummy where username=?");
+	 		PreparedStatement p1=conn.prepareStatement("select password from customer where username=?");
 	 		p1.setString(1, u);
 			ResultSet rs=p1.executeQuery();
 			if(!rs.next()) {
@@ -259,7 +259,7 @@ public class trawell {
 	 public String getNameofUser(String username) {
 	 	String c="";
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("Select name from customer_dummy where username=?");
+	 		PreparedStatement p=conn.prepareStatement("Select name from customer where username=?");
 	 		p.setString(1,username);
 	 		p.addBatch();
 	 		ResultSet rs= p.executeQuery();
@@ -278,7 +278,7 @@ public class trawell {
 	 public String getAddressofUser(String username) {
 	 	String c="";
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("Select address from customer_dummy where username=?");
+	 		PreparedStatement p=conn.prepareStatement("Select address from customer where username=?");
 	 		p.setString(1,username);
 	 		p.addBatch();
 	 		ResultSet rs= p.executeQuery();
@@ -297,7 +297,7 @@ public class trawell {
 	 public String getEmailofUser(String username) {
 	 	String c="";
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("Select email from customer_dummy where username=?");
+	 		PreparedStatement p=conn.prepareStatement("Select email from customer where username=?");
 	 		p.setString(1,username);
 	 		p.addBatch();
 	 		ResultSet rs= p.executeQuery();
@@ -312,8 +312,201 @@ public class trawell {
 	 	return c;		
 	 }
 
-	 public void changePassword(String username) {
-	 	
+	 public void changePassword(String username, String password) {
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("update customer set password=? where username=?");
+	 		p.setString(1,password);
+	 		p.setString(2,username);
+	 		p.addBatch();
+	 		p.executeUpdate();
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 }
+
+	 public void changeAddress(String username, String address) {
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("update customer set address=? where username=?");
+	 		p.setString(1,address);
+	 		p.setString(2,username);
+	 		p.addBatch();
+	 		p.executeUpdate();
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 }
+
+	 public void changeEmail(String username, String email) {
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("update customer set email=? where username=?");
+	 		p.setString(1,email);
+	 		p.setString(2,username);
+	 		p.addBatch();
+	 		p.executeUpdate();
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 }
+
+	 public String getPasswordofUser(String username) {
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select password from customer where username=?");
+	 		p.setString(1,username);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			
+	 		}
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;		
+	 }
+
+	 public String addCustomerSpotRating(String username, int cityid, String spotname, int rating) {
+	 	String result="rating done!";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select * from spotrating where username=? and cityid=? and spotname=?");
+	 		PreparedStatement p1=conn.prepareStatement("insert into spotrating values(?,?,?,?)");
+	 		p.setString(1,username);
+	 		p.setInt(2,cityid);
+	 		p.setString(3,spotname);
+	 		ResultSet rs=p.executeQuery();
+	 		if(!rs.next()) {
+				p1.setString(1, username);
+				p1.setInt(2, cityid);
+				p1.setString(3, spotname);
+				p1.setInt(4, rating);
+				p1.executeUpdate();
+			}
+			else {
+				PreparedStatement p2=conn.prepareStatement("update spotrating set srating=? where username=? and cityid=? and spotname=?");
+				p2.setInt(1,rating);
+				p2.setString(2,username);
+				p1.setInt(3, cityid);
+				p1.setString(4, spotname);
+				p2.addBatch();
+				p2.executeUpdate();
+			}
+			} catch (SQLException sqle) {
+				result="Unable to rate!";
+				System.out.println(sqle);
+				return result;
+				//System.exit(1);
+			}
+			return result;
+				
+	 }
+
+	 public int getUpdatedSpotRating(int cityid, String spotname) {
+	 	int r=0,count=0;
+	 	String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select srating from spotrating where cityid=? and spotname=?");
+	 		p.setInt(1,cityid);
+	 		p.setString(2,spotname);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 			int i = Integer.parseInt(c);
+	 			r+=i;
+	 			count++;
+	 			System.out.println(r+" dsfssssssssssssssssRating");
+	 			System.out.println(count);	 			
+	 		}
+	 		r=r/count;
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return r;		
+	 }	
+	 
+
+	 public void updateSpotRating(int cityid, String spotname, int rating) {
+	 	try {
+	 		PreparedStatement p1=conn.prepareStatement("update touristspots set rating=? where cityid=? and spotname=?");
+			p1.setInt(1, rating);
+			p1.setInt(2, cityid);
+			p1.setString(3, spotname);
+			p1.executeUpdate();
+			} catch (SQLException sqle) {
+				System.out.println(sqle);
+				
+				//System.exit(1);
+			}
+	 }
+
+	 public int getRatingValueinInt(String rating) {
+	 	int r=0;
+	 	if(rating.equals("one")) {
+	 		r=1;
+	  	}
+	  	else if(rating.equals("two")) {
+	 		r=2;
+	  	}
+	  	else if(rating.equals("three")) {
+	 		r=3;
+	  	}
+	  	else if(rating.equals("four")) {
+	 		r=4;
+	  	}
+	  	else if(rating.equals("five")) {
+	 		r=5;
+	  	}
+	  	else if(rating.equals("six")) {
+	 		r=6;
+	  	}
+	  	else if(rating.equals("seven")) {
+	 		r=7;
+	  	}
+	  	else if(rating.equals("eight")) {
+	 		r=8;
+	  	}
+	  	else if(rating.equals("nine")) {
+	 		r=9;
+	  	}
+	  	else if(rating.equals("ten")) {
+	 		r=10;
+	  	}
+	  	return r;
+
+	 }
+
+	 public String getHotelforaCity(int cityid) {
+		String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select hotelname from hotel where cityid=?");
+	 		p.setInt(1,cityid);
+	 		p.addBatch();
+	 		ResultSet rs= p.executeQuery();
+	 		while(rs.next()) {
+	 			c=rs.getString(1);
+	 		}
+	 		
+	 	} catch (SQLException sqle) {
+			System.out.println(sqle);
+			System.exit(1);
+		}
+	 	return c;	 	
+	 }
+
+	 /*
+	  Debugging function!	
+	 */
+	 public void checkParam(String s1, String s2) {								
+	 	System.out.println(s1+" "+s2+" Param Passed!");
 	 }
 }
 

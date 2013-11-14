@@ -77,8 +77,17 @@
           }
           %>
           
-        <h2>Change Password</h2>
+        <h2>Edit Profile</h2>
         <form action="changepwdsuccess.jsp" class="form-horizontal form-signin-signup">
+            <h4>Change Your Email Address</h4>
+            <input type="text" name="newemail" placeholder="New Email Address">
+            <input type="submit" name="changeemail" value="Update Email Address" class="btn btn-primary btn-large">
+            <br>
+            <h4>Change Your Address</h4>
+            <input type="text" name="newaddress" placeholder="New Address">
+            <input type="submit" name="changeaddress" value="Update Address" class="btn btn-primary btn-large">
+            <br>
+            <h4>Change Your Email Password</h4>
             <input type="password" name="curpwd" placeholder="Current Password">
             <input type="password" name="newpwd" placeholder="New Password">
             <input type="password" name="connewpwd" placeholder="Confirm New Password">

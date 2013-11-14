@@ -82,60 +82,26 @@
             <input type="text" name="spotsearchbyname" placeholder="Your dream destination">
             <input type="submit" name="getdetails" value="Take a tour!" class="btn btn-primary btn-large">
           </form>
-          <h4>And we are there!</h4>
+          <h4>Thank you for rating!</h4>
         </div>
           <%
           //Insert java code here.
-          String country = request.getParameter("country");
-          String state = request.getParameter("state");
-          String city = request.getParameter("city");
-          String id = request.getParameter("id");
-          String spot = request.getParameter("name");
-
-          session.setAttribute("spotname",spot);
-          session.setAttribute("cid",id);
-          int ids = Integer.parseInt(id);
-
           team_trawell.trawell l = new team_trawell.trawell();
           l.createConnection();
-          out.println("<h4>Exlpore this magical place through these words and your imagination!</h4> ");
+          
+          String spot = (String)session.getAttribute("spotname");
+          String id = (String)session.getAttribute("cid");
             
-          String c= l.getSpotDescription(spot,ids);
-          StringTokenizer st = new StringTokenizer(c, ":");
-          while (st.hasMoreElements()) {
-            String s = (String)st.nextElement();
-            //session.setAttribute("country",s);
-            //s="<a href=\"countryresults.jsp?name=" + s + "  \"> "  +s+"</a>";
-            String tag1 ="<h4>";
-            String tag2 ="</h4>";
+          int ids = Integer.parseInt(id);
+          //l.checkParam(request.getParameter("ratedrop"),id);
+          String r = request.getParameter("ratedrop");
+          int rating = l.getRatingValueinInt(r);
+
+          l.addCustomerSpotRating(myname, ids, spot, rating);
+          int updatedrating = l.getUpdatedSpotRating(ids, spot);
+          l.updateSpotRating(ids, spot, updatedrating);
             
-            tag1+=s;
-            tag1+=tag2;
-            out.println(tag1);
-            out.println("<br>");
-            out.println("<h5>Overall rating for this spot :</h5>");
-            }
-                              
           %>
-          
-          <h5>Rate Now!</h5>
-          <form action="ratingsuccess.jsp" class="form-horizontal form-signin-signup">
-          <select class="form-control" name="ratedrop">
-            <option value="one">1</option>
-            <option value="two">2</option>
-            <option value="three">3</option>
-           <option value="four">4</option>
-            <option value="five">5</option>
-            <option value="six">6</option>
-            <option value="seven">7</option>
-            <option value="eight">8</option>
-           <option value="nine">9</option>
-            <option value="ten">10</option>
-          </select>
-          
-            <input type="submit" name="rate" value="Rate Now" class="btn btn-primary btn-large">
-          </form>
-        
           <br>
           <br>
           <br>

@@ -53,7 +53,6 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="signup.jsp">Sign up</a></li>
               </ul>
             </div>
           </div>

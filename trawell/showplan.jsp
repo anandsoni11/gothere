@@ -66,10 +66,10 @@
       <div class="container">
         <div class="page-header">
         <%
-          String myname = (String) session.getAttribute("username"); 
-          if(myname!=null)
+          String user = (String)session.getAttribute("username");
+          if(user!=null)
           {
-            out.println("Welcome  "+myname+", <a href=\"logout.jsp\" >Logout</a>");
+            out.println("Welcome  "+user+", <a href=\"logout.jsp\" >Logout</a>");
             out.println("<br>");
             out.println("<br>");
             out.println("<br>");
@@ -78,12 +78,16 @@
         <%
 			String pid = request.getParameter("pid");
 			String pname = request.getParameter("pname");
-			String user = (String)session.getAttribute("username");
+			//String user = (String)session.getAttribute("username");
         %>
         
         
           <h1>Plan: <%=pname%></h1><br>
-                  
+          
+          </div>
+          
+          <div>
+               <h3> Your Friends..!!</h3>   
 		<%
 			team_trawell.trawell l=new team_trawell.trawell();
 			l.createConnection();
@@ -101,7 +105,35 @@
 		
 
         </div>
-
+        
+        <div>
+               <h3>Your Plan Details..!!</h3>  
+               <table class="table table-hover"> 
+		<%
+			
+			String table = l.getplanDetails(user,pid);
+		%>
+					<thead>
+						<td>Place to visit</td>
+						<td>Date of visit</td>
+					</thead>
+					<tbody>
+		<%
+			StringTokenizer tabletokens = new StringTokenizer(table, ",");
+			while (tabletokens.hasMoreElements()) {
+				String s = (String)tabletokens.nextElement();
+				String[] parts = s.split(":");
+				String spotlink = "<a href=\"spotresults_loggedin.jsp?name="+parts[1]+ "&id="+parts[0]+"  \"> "  +parts[1]+"</a>";
+				String data = "<tr><td>"+spotlink+"</td><td>"+parts[2]+"</td></tr>";
+				out.print(data);
+			}
+		%>
+				</tbody>
+			</table>
+        </div>
+        
+        
+	<br>
     <footer>
       <hr class="footer-divider">
       <div class="container">

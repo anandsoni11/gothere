@@ -59,7 +59,9 @@
 					out.println("<li><a href=\"home_loggedin.jsp\">Home</a></li>");
 				}
 				else {
+					out.println("<li><a href=\"home.jsp\">Home</a></li>");
 					out.println("<li><a href=\"signup.jsp\">Sign up</a></li>");
+					out.println("<li><a href=\"login.jsp\">Sign In</a></li>");
 				}
 				%>
               </ul>

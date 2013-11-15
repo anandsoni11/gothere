@@ -298,7 +298,7 @@ public class trawell {
 	 public String getEmailofUser(String username) {
 	 	String c="";
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("Select email from customer where username=?");
+	 		PreparedStatement p=conn.prepareStatement("Select emailid from customer where username=?");
 	 		p.setString(1,username);
 	 		p.addBatch();
 	 		ResultSet rs= p.executeQuery();
@@ -509,7 +509,7 @@ public class trawell {
 
 	 public void changeEmail(String username, String email) {
 	 	try {
-	 		PreparedStatement p=conn.prepareStatement("update customer set email=? where username=?");
+	 		PreparedStatement p=conn.prepareStatement("update customer set emailid=? where username=?");
 	 		p.setString(1,email);
 	 		p.setString(2,username);
 	 		p.addBatch();
@@ -892,6 +892,97 @@ public class trawell {
 				System.out.println(sqle);
 			}
 		
+	 }
+
+	 public void insertinToVisit(String username, int planid, int cityid, String spotname, String date) {
+	 	try{
+	 	PreparedStatement p=conn.prepareStatement("insert into tovisit values(?,?,?,?,to_date(?,'YYYY/MM/DD'))");
+	 		p.setString(1,username);
+	 		p.setInt(2,planid);
+	 		p.setInt(3,cityid);
+	 		p.setString(4,spotname);
+	 		p.setString(5,date);
+	 		p.executeUpdate();
+	 		
+		 } catch (SQLException sqle) {
+				System.out.println(sqle);
+			}
+	 }
+
+	public String getplanDetails(String user, String pid){
+		 String query = "SELECT * from tovisit Where username=? and planid=? order by dateoftravel;";
+		 String c ="";
+		 try {
+	 		PreparedStatement p=conn.prepareStatement(query);
+	 		p.setString(1,user);
+	 		p.setInt(2,Integer.parseInt(pid));
+	 		ResultSet rs=p.executeQuery();
+	 		while(rs.next()) {
+				//cityid:spotname:date,
+				c+=rs.getString(3)+":"+rs.getString(4)+":"+rs.getString(5)+",";
+			}
+		 } catch (SQLException sqle) {
+				System.out.println(sqle);
+		}
+		return c;
+	 }
+
+
+	 public String getPlanDetails(String username, int planid) {
+		String c="";
+	 	try {
+	 		PreparedStatement p=conn.prepareStatement("Select spotname,dateoftravel from tovisit where username=? and planid=?");
+	 		p.setString(1,username);
+	 		p.setInt(2,planid);
+	 		ResultSet rs=p.executeQuery();
+	 		while(rs.next()) {
+				String sp=rs.getString(1);
+				String da = rs.getString(2);
+				c+=sp;
+				c+=",";
+				c+=da+":";
+			}
+		 } catch (SQLException sqle) {
+				System.out.println(sqle);
+			}
+			return c;
+
+	 }
+
+	 public String gethistoryDetails(String user){
+		 String query = "SELECT j.cityid,j.spotname,j.dateoftravel from (history as h join historyplaces as hp on (h.planid = hp.planid)) as j where j.username =?;";
+		 String result ="";
+		 try {
+	 		PreparedStatement p=conn.prepareStatement(query);
+	 		//System.out.println("fgfsdgsdfjtyjty1");
+	 		p.setString(1,user);
+	 		//System.out.println("fgfsdgsdfjtyjty2");
+	 		ResultSet rs=p.executeQuery();
+			//System.out.println("fgfsdgsdfjtyjty3");
+			while(rs.next()) {
+			// Logic to retrieve the data from the resultset.
+			// eg: rs.getString("abc");
+			//System.out.println("fgfsdgsdfjtyjty4");
+				Integer cid = rs.getInt(1);
+				int cc = (Integer) cid;
+				//System.out.println(cid);
+				
+				//System.out.println("fgfsdgsdf");
+				String cd = getCompleteCityDetails(cc);
+				//System.out.println(cd);
+				/*if (cd.length() > 0 && cd.charAt(str.length()-1)==',') {
+					cd = cd.substring(0, cd.length()-1);
+				}*/
+				//System.out.println("fgvsvsdvsa");
+				//date,spotname,country,state,city,cityid:
+				result +=rs.getString(3)+","+rs.getString(2)+"," +cd +","+cid+":";
+			} 
+		 } catch (SQLException sqle) {
+			 //System.out.println("fgfsdgsdfjtyjty1sfa4444");
+				System.out.println(sqle);
+		}
+		//System.out.println(result);
+		return result;
 	 }
 	 /*
 	  Debugging function!	

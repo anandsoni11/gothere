@@ -1,4 +1,6 @@
-CREATE TABLE history (username varchar(25) references customer(username), planid integer references plan(planid), dateoftravel date, placeid integer unique not null, primary key (username, planid, dateoftravel));
+CREATE TABLE history (username varchar(25) references customer(username) not null, planid integer references plan(planid) not null);
+
+create table historyplaces(planid integer references plan(planid), cityid integer references cities(cityid), spotname varchar(100),dateoftravel date);
 
 CREATE TABLE schedule (username varchar(25) references customer(username), timeofevent timestamp not null, event varchar(100) not null, primary key (username, timeofevent));
 

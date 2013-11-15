@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="team_trawell.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
 <%
 	String user = (String)session.getAttribute("username");
 	String pname = request.getParameter("planname");
@@ -19,7 +20,8 @@
     <meta name="description" content="Trawell | Fly the adventurous skies!">
     <meta name="Anand Soni" content="Trawell">
     <title>Trawell Inc. | Explore those adventurous skies! </title>
-	
+	<script type="text/javascript" src="./js/jquery-2.0.3.js"></script>
+  	<script type="text/javascript" src="./js/dropdown.js"></script> 		
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
@@ -89,6 +91,8 @@
 					System.out.println("before addplan\n");
 					l.addPlan(pname,user);
 					planid=l.getPlanID(user,pname);
+					session.setAttribute("pid",planid);
+					String countries=l.getCountries();
 					System.out.println("after addplan\n");
 			%>
 				
@@ -100,27 +104,35 @@
 			<div class="page-header">
 				<h1>Add a Plan</h1>
 			</div>
-			
-			<div class="row">
-				<div class="span6 offset3">
-					<h4 class="widget-header"><i class="icon-gift"></i> Add a Place now!</h4>
-					<div class="widget-body">
-						<div class="center-align">
-							<form action="planplace.jsp" class="form-horizontal form-signin-signup">
-								Select Date: <input type="date" name="date" placeholder="Enter Date">
-								<input type="text" name="country" placeholder="Select Country">
-								<input type="text" name="state" placeholder="Select State">
-								<input type="text" name="city" placeholder="Select City">
-								<input type="text" name="spot" placeholder="Select Spot">
-								<div>
-									<input type="submit" name="addplace" value="Add Place" class="btn btn-primary btn-large">
-								</div>
-							</form>
-							<h4><i class="icon-question-sign"></i> Are You Done?</h4>
-							<a href="plan.jsp" class="btn btn-large bottom-space">Go to Plans</a>
-						</div>
-					</div>
+			<h4 class="widget-header"><i class="icon-gift"></i> Add a Place now!</h4>
+			<form action="planspot.jsp" class="form-horizontal form-signin-signup">
+				<h4>Select Date:</h4> <input type="date" name="date" placeholder="Enter Date">
+				<div>
+				<select name="d1" id="1" onChange="callbackend('1','2')">
+          		<%
+          		StringTokenizer st = new StringTokenizer(countries, ",");
+          		while (st.hasMoreElements()) {
+            		String s = (String)st.nextElement();
+            		out.println("<option value="+s+">"+s+"</option>");
+          		}
+          
+          		%>
+          		</select>
+        
+      		    <select name="d2" id='2' onChange="callbackend1('2','1','3')">
+          		</select>
+
+          		<select name="d3" id='3'>
+          		</select>
+          	</div>
+          	<br>
+				<div>
+					<input type="submit" name="addplace" value="Add Place" class="btn btn-primary btn-large">
 				</div>
+			</form>
+			<h4><i class="icon-question-sign"></i> Are You Done?</h4>
+			<a href="plan.jsp" class="btn btn-large bottom-space">Go to Plans</a>
+			</div>
 			</div>
 			<br>
     

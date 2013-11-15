@@ -21,7 +21,8 @@
   <body>
 
     <header>
-      
+  
+
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -51,9 +52,9 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="signup.jsp">Sign Up</a></li>
-                <li><a href="login.jsp">Sign In</a></li>
+                <li><a href="home_loggedin.jsp">Home</a></li>
               </ul>
+
             </div>
           </div>
         </div>
@@ -62,12 +63,15 @@
     <br>     
     </header>
 
+
+
     <div class="content">
+  
       <div class="container">
         <div class="page-header">
+    
           <%
-          String myname =  (String)session.getAttribute("username");
-        
+          String myname = (String) session.getAttribute("username"); 
           if(myname!=null)
           {
             out.println("Welcome  "+myname+", <a href=\"logout.jsp\" >Logout</a>");
@@ -76,6 +80,11 @@
             out.println("<br>");
           }
           %>
+          <ol class="breadcrumb">
+            <li><a href="home_loggedin.jsp">Home</a></li>
+            <li class="active">Profile</li>
+          </ol>
+     
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
@@ -107,7 +116,7 @@
         </tbody>
         </table>
         <form action="changepassword.jsp" class="form-horizontal form-signin-signup">
-            <input type="submit" name="changepwd" value="Change Password" class="btn btn-primary btn-large">
+            <input type="submit" name="editprofile" value="Edit Profile" class="btn btn-primary btn-large">
         </form>
         </div>
       </div>

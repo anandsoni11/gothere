@@ -61,8 +61,7 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="signup.jsp">Sign Up</a></li>
-                <li><a href="login.jsp">Sign In</a></li>
+                <li><a href="home_loggedin.jsp">Home</a></li>
               </ul>
             </div>
           </div>

@@ -9,7 +9,8 @@
     <meta name="description" content="Trawell | Fly the adventurous skies!">
     <meta name="Anand Soni" content="Trawell">
     <title>Trawell Inc. | Explore those adventurous skies! </title>
-	
+  <script type="text/javascript" src="./js/jquery-2.0.3.js"></script>
+  <script type="text/javascript" src="./js/dropdown.js"></script>	
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
 	<link type="text/css" rel="stylesheet" href="./css/font-awesome.css" />
@@ -21,7 +22,8 @@
   <body>
 
     <header>
-      
+  
+
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -51,8 +53,10 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="home_loggedin.jsp">Home</a></li>
+                <li><a href="signup.jsp">Sign Up</a></li>
+                
               </ul>
+
             </div>
           </div>
         </div>
@@ -61,10 +65,14 @@
     <br>     
     </header>
 
+
+
     <div class="content">
+  
       <div class="container">
         <div class="page-header">
-        <%
+    
+          <%
           String myname = (String) session.getAttribute("username"); 
           if(myname!=null)
           {
@@ -74,38 +82,33 @@
             out.println("<br>");
           }
           %>
+          
           <h1>You dream of skies, we get you wings!</h1>
           <br>
           <br>
           <%
-         String user = request.getParameter("user");
+         String user = (String) session.getAttribute("username");
+         Integer citid= (Integer) session.getAttribute("citid");
+         System.out.println(citid+" City ID @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+         int cid = (Integer)citid;
+         String spotn = request.getParameter("spotwish");
          team_trawell.trawell l = new team_trawell.trawell();
-          
-        l.createConnection();  
-        String name= l.getNameofUser(user);
-        String addr= l.getAddressofUser(user);
-        String email= l.getEmailofUser(user);
-
-        %>
-        <h2><%=request.getParameter("name")%>&#39s Profile Information</h2>
-        <table class="table">
-          <thead>
-            <td>Username</td>
-            <td>Name</td>
-            <td>Address</td>
-            <td>Email</td>
-          </thead>
-          <tbody>
-          <tr>
-            <td><%=user%></td>
-            <td><%=name%></td>
-            <td><%=addr%></td>
-            <td><%=email%></td>
-          </tr>
-        </tbody>
-        </table>
+         l.createConnection(); 
+         l.addtoWishlist(myname,cid,spotn);
+         %>
+        <h2>Add Spot to Wishlist</h2>
+        <h3>Successfully added the spot to your wishlist!</h3>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
-     
+      </div>
+    </div>
     <br>
     <br>
     <br>
@@ -124,14 +127,11 @@
         </p>
       </div>
     </footer>
-     </div>
-    </div>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/boot-business.js"></script>
   </body>
 </html>
  
-
 
 

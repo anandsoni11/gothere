@@ -32,6 +32,17 @@
             </button>
        
             <div class="nav-collapse collapse">        
+			  <%
+				String myname =  (String)session.getAttribute("username");
+        		if(myname!=null) {	
+				out.println("<ul class=\"nav pull-left\">");
+					out.println("<li><a href=\"profile.jsp\">Profile</a></li>");
+					out.println("<li><a href=\"plan.jsp\">Plan</a></li>");
+					out.println("<li><a href=\"history.jsp\">History</a></li>");
+					out.println("<li><a href=\"wishlist.jsp\">Wishlist</a></li>");
+				out.println("</ul>");
+				}
+			%>	 
               <ul class="nav pull-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
@@ -42,7 +53,14 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="signup.jsp">Sign up</a></li>
+                <%
+                if(myname!=null) {
+					out.println("<li><a href=\"home_loggedin.jsp\">Home</a></li>");
+				}
+				else {
+					out.println("<li><a href=\"signup.jsp\">Sign up</a></li>");
+				}
+				%>
               </ul>
             </div>
           </div>
@@ -60,7 +78,7 @@
         <div class="row">
           <div class="span6 offset3">
             	<%
-				String myname =  (String)session.getAttribute("username");
+				//String myname =  (String)session.getAttribute("username");
         
 				if(myname!=null)
 				{

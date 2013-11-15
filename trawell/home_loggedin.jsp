@@ -40,6 +40,7 @@
               <li><a href="plan.jsp">Plan</a></li>
               <li><a href="history.jsp">History</a></li>
               <li><a href="wishlist.jsp">Wishlist</a></li>
+              <!--<li><a href="dropdown.jsp">Dropdown</a></li>-->
               </ul>        
               <ul class="nav pull-right">
                 <li class="dropdown">
@@ -51,8 +52,8 @@
                 </li>
                 <li><a href="faq.jsp">FAQ</a></li>
                 <li><a href="contact_us.jsp">Contact us</a></li>
-                <li><a href="signup.jsp">Sign Up</a></li>
-                <li><a href="login.jsp">Sign In</a></li>
+                <li><a href="home_logged_in.jsp">Home</a></li>
+                
               </ul>
             </div>
           </div>

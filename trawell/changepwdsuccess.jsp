@@ -75,15 +75,48 @@
             out.println("<br>");
             out.println("<br>");
           }
-
+        String newemail =  request.getParameter("newemail");
+        String newaddress =  request.getParameter("newaddress");
+        String newpwd =  request.getParameter("newpwd");
+        String curpwd =  request.getParameter("curpwd");
+        String newpwdconfirm =  request.getParameter("connewpwd");
+        String chemail =  request.getParameter("changeemail");
+        String chaddress =  request.getParameter("changeaddress");
+        String chpwd =  request.getParameter("updatepwd");
+        
+          
         team_trawell.trawell l = new team_trawell.trawell();
           
-        l.createConnection();  
-        String name= l.changePassword(myname);
+        l.createConnection();
+        if(newpwd!=null && chpwd!=null) {
+          String originalpwd = l.getPasswordofUser(myname);
+          if(newpwd.equals(newpwdconfirm) && curpwd.equals(originalpwd)) {
+            l.changePassword(myname,newpwd);
+            out.println("<h3>Password Updated Successfully!</h3>");
+          }
+          else if(!newpwd.equals(newpwdconfirm)) {
+            out.println("<h3>Passwords donot match! Try again!</h3>");
+          }
+
+          else if(!curpwd.equals(originalpwd)) {
+            out.println("<h3>Invalid Password! Try Again!</h3>");
+          }
+            
+        }
+
+        else if(newaddress!=null && chaddress!=null) {
+          l.changeAddress(myname,newaddress);
+          out.println("<h3>Address Updated Successfully!</h3>");  
+        }
+
+        else if(newemail!=null && chemail!=null) {
+          l.changeEmail(myname,newemail);
+          out.println("<h3>Email Updated Successfully!</h3>");  
+        }  
+        
         
           %>
-        <h3>Password Changed Successfully!</h3>
-        <h4>Go Back!</h4>
+        
         <h5><a href="home_loggedin.jsp">Return to Home</a></h5>
         </div>
       </div>
